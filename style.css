@@ -18,13 +18,14 @@ body {
     margin-right: 4px;
 }
 
-.on{
-    color: #888a85;
-    text-shadow: #ccc 0px 2px 0px;
+.filter {
+    opacity: 0.5;
 }
 
-.off{
-    opacity: 0.5;
+.on{
+    opacity: 1;
+    color: #888a85;
+    text-shadow: #ccc 0px 2px 0px;
 }
 
 #control :hover {
