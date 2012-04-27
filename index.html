@@ -27,10 +27,9 @@
 		<div id='control'>
 			<div id='ptm'>ptm</div>
 			<div id='now' class='filter on'>now</div>
-			<div id='next' class='filter on'>next</div>
-			<div id='anytime' class='filter off'>anytime</div>
-			<div id='pending' class='filter on'>pending</div>
-			<div id='done' class='filter off'>done</div>
+			<div id='free' class='filter on'>free</div>
+			<div id='late' class='filter on'>late</div>
+			<div id='done' class='filter'>done</div>
 		</div>
 		
 		<div id='list'>
@@ -41,14 +40,21 @@
 				<div class='link'>@</div>
 				<div class='tags'><div>#design</div><div>#hack</div></div>
 			</div>
-			<div class='task'>
+            <div class='task free'>
+				<div class='time'></div>
+				<div class='priority'></div>
+				<div class='text'>This task is free, man.</div>
+				<div class='link'>@</div>
+				<div class='tags'><div>#design</div><div>#hack</div></div>
+			</div>
+			<div class='task late'>
 				<div class='time'>yesterday 22:30</div>
 				<div class='priority'>···</div>
 				<div class='text'>description of the task</div>
 				<div class='link'>@</div>
 				<div class='tags'><div>#design</div><div>#hack</div></div>
 			</div>
-			<div class='task done'>
+			<div class='task now done'>
 				<div class='time'>22:30</div>
 				<div class='priority p1'>·</div>
 				<div class='text'>description of the task</div>
