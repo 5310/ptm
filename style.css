@@ -29,6 +29,7 @@ body {
 
 #control :hover {
     text-shadow: #babbb8 0px 0px 2px;
+    cursor: pointer;
 }
 
 #control #ptm {
@@ -54,6 +55,7 @@ body {
 }
 .task:hover {
     text-shadow: #babbb8 0px 0px 2px;
+    cursor: pointer;
 }
 .now{
     opacity: 1;
