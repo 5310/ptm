@@ -9,9 +9,14 @@
 	
 3.	~~Start work:~~
 	1.	~~Set-up project tree.~~
-    2.	~~Gitify it.~~
+	2.	~~Gitify it.~~
     
-4.	Write GUI behavior to filter (dummy) tasks, to make front-end ready for code.
+4.	Write front-end behaviors with dummy tasks:
+	1.	~~Settle of a filtering scheme.~~
+	2.	~~Make filters actually filter tasks according to the scheme.~~
+	3.	Display a message when there's nothing to show.
+	4.	Make message intelligent!
+	5.	Decide whether to implement an overriding 'now' button that disables all other filters and then brings them back to their previous state.
 	
 5.	Get and show tasks:
     1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.
