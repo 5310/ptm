@@ -18,7 +18,9 @@
 	4.	Make message intelligent!
 	5.	Decide whether to implement an overriding 'now' button that disables all other filters and then brings them back to their previous state.
 	6.	Disable filters if no relevant task is present.
-	7.	Add relevant tooltips.
+	7.	~~Add disabled style.~~
+	8.	~~Remove handlers for disabler filters.~~
+	9.	Add relevant tool-tips for filters, disabled or otherwise.
 	
 5.	Get and show tasks:
 	1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.
