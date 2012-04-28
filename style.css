@@ -28,7 +28,14 @@ body {
     text-shadow: #ccc 0px 2px 0px;
 }
 
-#control :hover {
+.disabled {
+    opacity: 1;
+    color: #dfdfdf;
+    text-shadow: #999 0px -1px 0px;
+    cursor: default;
+}
+
+#control :hover:not(.disabled) {
     text-shadow: #babbb8 0px 0px 2px;
     cursor: pointer;
 }
