@@ -15,12 +15,33 @@
 	1.	~~Settle of a filtering scheme.~~
 	2.	~~Make filters actually filter tasks according to the scheme.~~
 	3.	Display a message when there's nothing to show.
-	4.	Make message intelligent!
-	5.	Decide whether to implement an overriding 'now' button that disables all other filters and then brings them back to their previous state.
-	6.	Disable filters if no relevant task is present.
-	7.	~~Add disabled style.~~
-	8.	~~Remove handlers for disabler filters.~~
-	9.	Add relevant tool-tips for filters, disabled or otherwise.
+		Looks like you're done! Or are you?
+		Where did all the tasks go?
+		This is not the task-list you're looking for.
+		There is but one thing left to do, live.
+		It is as if there weren't any tasks to begin with.
+		Your task is in another castle.
+		You've nothing else to do. For the moment...
+		Are you sure you had anything to do today?
+		...
+	4.	Decide about 'now':
+		Add a perma-on button at front, that will set additional filters off if clicked: now + next free late done
+		OR is it that now toggles active tasks?
+		Decided: no special 'now', only an usual filter for intuitions's sake.
+	5.	Disable filters if no relevant task is present.
+	6.	~~Add disabled style.~~
+	7.	~~Remove handlers for disabler filters.~~
+	8.	Add relevant tool-tips for filters, disabled or otherwise.
+		Now:	Show only active tasks.
+				There are no tasks scheduled for right now.
+		Next:	Show or hide upcoming tasks.
+				There are no more tasks scheduled for today.
+		Free:	Show or hide unscheduled tasks the day.
+				There are no unscheduled tasks to do today.
+		Late:	Show or hide unfinished tasks from before.
+				You have no pending tasks.
+		Done:	Show or hide recently finished unsynced tasks.
+				There are no unsynced recently completed tasks.
 	
 5.	Get and show tasks:
 	1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.
@@ -43,22 +64,22 @@
 8.	Personal release.
 
 9.  Use user-provided API keys.
-	1.  	Write GUI way to input API keys from other users. Provide simple instructions, and a warning.
+	1.  Write GUI way to input API keys from other users. Provide simple instructions, and a warning.
 	2.	Store key to cookies or local-stores.
 	3.	Make everything use this key for signing instead of the linked file.
 	
 10. Pre-release polish.
-	1.  	Use @font-face, and add fallback.
-	2.  	Refactor CSS for cleanliness.
-	3.  	Add noscript message.
-	4.  	Make sure to meet branding guidelines and licensing messages.
-	5.  	Double-check HTML metadata.
-	6.  	Double-check for API-key leaks.
-	7.  	Write proper readme.
-	8.  	See if reset-file can be CDN'd.
+	1.  Use @font-face, and add fallback.
+	2.  Refactor CSS for cleanliness.
+	3.  Add noscript message.
+	4.  Make sure to meet branding guidelines and licensing messages.
+	5.  Double-check HTML metadata.
+	6.  Double-check for API-key leaks.
+	7.  Write proper readme.
+	8.  See if reset-file can be CDN'd.
         
 11. "Public" release.
     
 12. Post-release polish.
-	1.  	Make site work well with mobile devices with proper style.
-	2.		Maybe include a dynamic favicon which displays pending tasks?
+	1.  Make site work well with mobile devices with proper style.
+	2.	Maybe include a dynamic favicon which displays pending tasks?
