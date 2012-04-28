@@ -117,6 +117,18 @@ body {
 }
 
 
+#emptymessage {
+    position: relative; 
+    left: 200px;
+    width: 600px;
+    margin-bottom: 30px;
+    color: #888a85;
+    font-family: 'museo 300';
+    font-size: 24px;
+    text-shadow: white 0px 1px 0px;
+}
+
+
 footer {
     position: relative;
     bottom: 30px;

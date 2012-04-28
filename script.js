@@ -13,55 +13,7 @@ var filters = {
 $(document).ready(
 	function() {
 		
-		// Sets filters to the state in `filters`.
-		var setFiltersByState = function() {
-			
-			// For the 'done' filter.
-			if ( filters['done'] ) {
-				$(".filter#done").addClass('on');
-				$('.task.done').show();
-			} else {
-				$(".filter#done").removeClass('on');
-				$('.task.done').hide();
-			}
-			
-			// For the 'late' filter.	
-			if ( filters['late'] ) {
-				$(".filter#late").addClass('on');
-				$('.task.late').not('.done').show();
-			} else {
-				$(".filter#late").removeClass('on');
-				$('.task.late').not('.done').hide();
-			}
-			
-			// For the 'free' filter.	
-			if ( filters['free'] ) {
-				$(".filter#free").addClass('on');
-				$('.task.free').not('.done').not('.late').show();
-			} else {
-				$(".filter#free").removeClass('on');
-				$('.task.free').not('.done').not('.late').hide();
-			}
-			
-			// For the 'next' filter.	
-			if ( filters['next'] ) {
-				$(".filter#next").addClass('on');
-				$('.task.next').not('.done').not('.late').not('.free').show(100);
-			} else {
-				$(".filter#next").removeClass('on');
-				$('.task.next').not('.done').not('.late').not('.free').hide(100);
-			}
-			
-			// For the 'now' filter.
-			if ( filters['now'] ) {
-				$(".filter#now").addClass('on');
-				$('.task').not('.done').not('.late').not('.free').not('next').show(100);
-			} else {
-				$(".filter#now").removeClass('on');
-				$('.task').not('.done').not('.late').not('.free').not('next').hide(100);
-			}
-			
-		};
+		// Sets filters by state.
 		setFiltersByState();					
 		
 		// Handlers for the specific filter toggles.
@@ -77,6 +29,8 @@ $(document).ready(
 			// Toggle filter-state.
 			filters['done'] = !filters['done'];
 			
+			// Displayes empty-message if required.
+			showEmptyMessage();
 		});
 		
 		// Handler for the 'late' filter.
@@ -91,6 +45,8 @@ $(document).ready(
 			// Toggle filter-state.
 			filters['late'] = !filters['late'];
 			
+			// Displayes empty-message if required.
+			showEmptyMessage();
 		});
 		
 		// Handler for the 'free' filter.
@@ -105,6 +61,8 @@ $(document).ready(
 			// Toggle filter-state.
 			filters['free'] = !filters['free'];
 			
+			// Displayes empty-message if required.
+			showEmptyMessage();
 		});
 		
 		// Handler for the 'next' filter.
@@ -119,6 +77,8 @@ $(document).ready(
 			// Toggle filter-state.
 			filters['next'] = !filters['next'];
 			
+			// Displayes empty-message if required.
+			showEmptyMessage();
 		});
 		
 		// Handler for the 'now' filter.
@@ -133,10 +93,76 @@ $(document).ready(
 			// Toggle filter-state.
 			filters['now'] = !filters['now'];
 			
+			// Displayes empty-message if required.
+			showEmptyMessage();
+			
 		});
-		
+
 	}
 );
 
+// Sets filters to the state in `filters`.
+var setFiltersByState = function() {
+		
+	// For the 'done' filter.
+	if ( filters['done'] ) {
+		$(".filter#done").addClass('on');
+		$('.task.done').show();
+	} else {
+		$(".filter#done").removeClass('on');
+		$('.task.done').hide();
+	}
+	
+	// For the 'late' filter.	
+	if ( filters['late'] ) {
+		$(".filter#late").addClass('on');
+		$('.task.late').not('.done').show();
+	} else {
+		$(".filter#late").removeClass('on');
+		$('.task.late').not('.done').hide();
+	}
+	
+	// For the 'free' filter.	
+	if ( filters['free'] ) {
+		$(".filter#free").addClass('on');
+		$('.task.free').not('.done').not('.late').show();
+	} else {
+		$(".filter#free").removeClass('on');
+		$('.task.free').not('.done').not('.late').hide();
+	}
+	
+	// For the 'next' filter.	
+	if ( filters['next'] ) {
+		$(".filter#next").addClass('on');
+		$('.task.next').not('.done').not('.late').not('.free').show(100);
+	} else {
+		$(".filter#next").removeClass('on');
+		$('.task.next').not('.done').not('.late').not('.free').hide(100);
+	}
+	
+	// For the 'now' filter.
+	if ( filters['now'] ) {
+		$(".filter#now").addClass('on');
+		$('.task').not('.done').not('.late').not('.free').not('next').show(100);
+	} else {
+		$(".filter#now").removeClass('on');
+		$('.task').not('.done').not('.late').not('.free').not('next').hide(100);
+	}
+	
+	// For the empty-message.
+	$('#emptymessage').hide();
+	showEmptyMessage();
+	
+};
+
+// Shows the empty-list message.
+var showEmptyMessage = function() {
+	var empty = false;
+	if ( !empty ) {
+		$('#emptymessage').hide(100);
+	} else {
+		$('#emptymessage').show(100);
+	}
+};
 
 
