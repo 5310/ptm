@@ -5,6 +5,7 @@ var filters = {
 	'late': true,
 	'free': true,
 	'next': true,
+	'now':	true
 };
 
 
@@ -42,7 +43,7 @@ $(document).ready(
 				$('.task.free').not('.done').not('.late').hide();
 			}
 			
-			// For the 'now' filter.	
+			// For the 'next' filter.	
 			if ( filters['next'] ) {
 				$(".filter#next").addClass('on');
 				$('.task.next').not('.done').not('.late').not('.free').show(100);
@@ -50,6 +51,16 @@ $(document).ready(
 				$(".filter#next").removeClass('on');
 				$('.task.next').not('.done').not('.late').not('.free').hide(100);
 			}
+			
+			// For the 'now' filter.
+			if ( filters['now'] ) {
+				$(".filter#now").addClass('on');
+				$('.task').not('.done').not('.late').not('.free').not('next').show(100);
+			} else {
+				$(".filter#now").removeClass('on');
+				$('.task').not('.done').not('.late').not('.free').not('next').hide(100);
+			}
+			
 		};
 		setFiltersByState();					
 		
@@ -96,7 +107,7 @@ $(document).ready(
 			
 		});
 		
-		// Handler for the 'now' filter.
+		// Handler for the 'next' filter.
 		$(".filter#next").not('.disabled').on("click", function(event){
 						
 			// Toggle visibility of all tasks with class 'next' but not 'done', 'late', and 'free'.
@@ -107,6 +118,20 @@ $(document).ready(
 			
 			// Toggle filter-state.
 			filters['next'] = !filters['next'];
+			
+		});
+		
+		// Handler for the 'now' filter.
+		$(".filter#now").not('.disabled').on("click", function(event){
+						
+			// Toggle visibility of all tasks with class 'now' but not 'done', 'late', 'free', and 'next'.
+			$('.task.now').not('next').not('.done').not('.late').not('.free').toggle(100);
+			
+			// Toggle 'on' class on the filter itself.
+			$(".filter#now").toggleClass('on');
+			
+			// Toggle filter-state.
+			filters['now'] = !filters['now'];
 			
 		});
 		
