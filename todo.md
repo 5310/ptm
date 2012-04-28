@@ -14,16 +14,7 @@
 4.	Write front-end behaviors with dummy tasks:
 	1.	~~Settle of a filtering scheme.~~
 	2.	~~Make filters actually filter tasks according to the scheme.~~
-	3.	Display a message when there's nothing to show.
-		Looks like you're done! Or are you?
-		Where did all the tasks go?
-		This is not the task-list you're looking for.
-		There is but one thing left to do, live.
-		It is as if there weren't any tasks to begin with.
-		Your task is in another castle.
-		You've nothing else to do. For the moment...
-		Are you sure you had anything to do today?
-		...
+	3.	~~Display a message when there's nothing to show.~~
 	4.	~~Decide about 'now':~~
 		~~Add a perma-on button at front, that will set additional filters off if clicked: now + next free late done~~
 		~~OR is it that now toggles active tasks?~~

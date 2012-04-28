@@ -143,10 +143,10 @@ var setFiltersByState = function() {
 	// For the 'now' filter.
 	if ( filters['now'] ) {
 		$(".filter#now").addClass('on');
-		$('.task').not('.done').not('.late').not('.free').not('next').show(100);
+		$('.task.now').not('.done').not('.late').not('.free').not('next').show(100);
 	} else {
 		$(".filter#now").removeClass('on');
-		$('.task').not('.done').not('.late').not('.free').not('next').hide(100);
+		$('.task.now').not('.done').not('.late').not('.free').not('next').hide(100);
 	}
 	
 	// For the empty-message.
@@ -157,12 +157,42 @@ var setFiltersByState = function() {
 
 // Shows the empty-list message.
 var showEmptyMessage = function() {
-	var empty = false;
-	if ( !empty ) {
+	
+	// Fancy list of messages to randomly choose from.
+	var messages = [
+		"Looks like you're done! Or are you?",
+		"Where did all the tasks go?",
+		"This is not the task-list you're looking for.",
+		"There is but one thing left to do, live.",
+		"It is as if there weren't any tasks to begin with.",
+		"Your task is in another castle.",
+		"You've nothing else to do. For the moment...",
+		"Are you sure you had anything to do today?"
+	];
+	
+	$('#emptymessage').html(messages[Math.floor((Math.random()*(messages.length+1)))]);
+
+	// See how many tasks are visible.
+	var visible = 0;
+	var selector = ".task";
+	if ( !filters['done'] )
+		selector += ":not(.done)";
+	if ( !filters['late'] )
+		selector += ":not(.late)";
+	if ( !filters['free'] )
+		selector += ":not(.free)";
+	if ( !filters['next'] )
+		selector += ":not(.next)";
+	if ( !filters['now'] )
+		selector += ":not(.now)";
+	visible = $(selector).size();
+
+	// If there are no visible tasks, display empty message.
+	if ( visible > 0 )
 		$('#emptymessage').hide(100);
-	} else {
+	else
 		$('#emptymessage').show(100);
-	}
+	
 };
 
 
