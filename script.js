@@ -167,7 +167,12 @@ var showEmptyMessage = function() {
 		"It is as if there weren't any tasks to begin with.",
 		"Your task is in another castle.",
 		"You've nothing else to do. For the moment...",
-		"Are you sure you had anything to do today?"
+		"Are you sure you had anything to do today?",
+		"Nothing ever happens in Mabase.",
+		"Gotten things done!",
+		"There, all finished. Pat yourself on the back.",
+		"Stick a fork in yourself, 'cause you're done!",
+		"Nothing to see here, move along."
 	];
 	
 	$('#emptymessage').html(messages[Math.floor((Math.random()*(messages.length+1)))]);
