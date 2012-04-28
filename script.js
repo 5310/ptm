@@ -55,7 +55,7 @@ $(document).ready(
 		
 		// Handlers for the specific filter toggles.
 		
-		$(".filter#done").on("click", function(event){
+		$(".filter#done").not('.disabled').on("click", function(event){
 			
 			// Toggle visibility of all tasks with class 'done'.
 			$('.task.done').toggle(100);
@@ -69,7 +69,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'late' filter.
-		$(".filter#late").on("click", function(event){
+		$(".filter#late").not('.disabled').on("click", function(event){
 			
 			// Toggle visibility of all tasks with class 'late' but not 'done'.
 			$('.task.late').not('.done').toggle(100);
@@ -83,7 +83,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'free' filter.
-		$(".filter#free").on("click", function(event){
+		$(".filter#free").not('.disabled').on("click", function(event){
 						
 			// Toggle visibility of all tasks with class 'free' but not 'done' or 'late'.
 			$('.task.free').not('.done').not('.late').toggle(100);
@@ -97,7 +97,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'now' filter.
-		$(".filter#next").on("click", function(event){
+		$(".filter#next").not('.disabled').on("click", function(event){
 						
 			// Toggle visibility of all tasks with class 'next' but not 'done', 'late', and 'free'.
 			$('.task.next').not('.done').not('.late').not('.free').toggle(100);
