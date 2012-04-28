@@ -4,7 +4,7 @@ var filters = {
 	'done': false,
 	'late': true,
 	'free': true,
-	'now': true,
+	'next': true,
 };
 
 
@@ -43,24 +43,25 @@ $(document).ready(
 			}
 			
 			// For the 'now' filter.	
-			if ( filters['now'] ) {
-				$(".filter#now").addClass('on');
-				$('.task').not('.now').not('.done').not('.late').not('.free').hide();
+			if ( filters['next'] ) {
+				$(".filter#next").addClass('on');
+				$('.task.next').not('.done').not('.late').not('.free').show(100);
 			} else {
-				$(".filter#now").removeClass('on');
-				$('.task').not('.now').not('.done').not('.late').not('.free').show();
+				$(".filter#next").removeClass('on');
+				$('.task.next').not('.done').not('.late').not('.free').hide(100);
 			}
 		};
 		setFiltersByState();					
 		
-		// Handler for the 'done' filter.
+		// Handlers for the specific filter toggles.
+		
 		$(".filter#done").on("click", function(event){
 			
 			// Toggle visibility of all tasks with class 'done'.
 			$('.task.done').toggle(100);
 			
 			// Toggle 'on' class on the filter itself.
-			$(this).toggleClass('on');
+			$(".filter#done").toggleClass('on');
 			
 			// Toggle filter-state.
 			filters['done'] = !filters['done'];
@@ -74,7 +75,7 @@ $(document).ready(
 			$('.task.late').not('.done').toggle(100);
 			
 			// Toggle 'on' class on the filter itself.
-			$(this).toggleClass('on');
+			$(".filter#late").toggleClass('on');
 			
 			// Toggle filter-state.
 			filters['late'] = !filters['late'];
@@ -88,7 +89,7 @@ $(document).ready(
 			$('.task.free').not('.done').not('.late').toggle(100);
 			
 			// Toggle 'on' class on the filter itself.
-			$(this).toggleClass('on');
+			$(".filter#free").toggleClass('on');
 			
 			// Toggle filter-state.
 			filters['free'] = !filters['free'];
@@ -96,16 +97,16 @@ $(document).ready(
 		});
 		
 		// Handler for the 'now' filter.
-		$(".filter#now").on("click", function(event){
+		$(".filter#next").on("click", function(event){
 						
-			// Toggle visibility of all tasks NOT with class 'now', 'done', 'late', and 'free'.
-			$('.task').not('.now').not('.done').not('.late').not('.free').toggle(100);
+			// Toggle visibility of all tasks with class 'next' but not 'done', 'late', and 'free'.
+			$('.task.next').not('.done').not('.late').not('.free').toggle(100);
 			
 			// Toggle 'on' class on the filter itself.
-			$(this).toggleClass('on');
+			$(".filter#next").toggleClass('on');
 			
 			// Toggle filter-state.
-			filters['now'] = !filters['now'];
+			filters['next'] = !filters['next'];
 			
 		});
 		
