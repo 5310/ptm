@@ -24,10 +24,10 @@
 		You've nothing else to do. For the moment...
 		Are you sure you had anything to do today?
 		...
-	4.	Decide about 'now':
-		Add a perma-on button at front, that will set additional filters off if clicked: now + next free late done
-		OR is it that now toggles active tasks?
-		Decided: no special 'now', only an usual filter for intuitions's sake.
+	4.	~~Decide about 'now':~~
+		~~Add a perma-on button at front, that will set additional filters off if clicked: now + next free late done~~
+		~~OR is it that now toggles active tasks?~~
+		~~Decided: no special 'now', only an usual filter for intuitions's sake.~~
 	5.	Disable filters if no relevant task is present.
 	6.	~~Add disabled style.~~
 	7.	~~Remove handlers for disabler filters.~~
