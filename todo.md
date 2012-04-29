@@ -19,7 +19,7 @@
 		~~Add a perma-on button at front, that will set additional filters off if clicked: now + next free late done~~
 		~~OR is it that now toggles active tasks?~~
 		~~Decided: no special 'now', only an usual filter for intuitions's sake.~~
-	5.	Disable filters if no relevant task is present.
+	5.	~~Disable filters if no relevant task is present.~~
 	6.	~~Add disabled style.~~
 	7.	~~Remove handlers for disabler filters.~~
 	8.	Add relevant tool-tips for filters, disabled or otherwise.
@@ -68,6 +68,7 @@
 	6.  Double-check for API-key leaks.
 	7.  Write proper readme.
 	8.  See if reset-file can be CDN'd.
+	9.	Be polite, and include libraries instead of hotlinking them.
         
 11. "Public" release.
     

@@ -124,6 +124,11 @@ $(document).ready(
 	}
 );
 
+// Adds filters tooltips.
+var addFiltersTooltips = function() {
+	
+};
+
 // Sets filters to the state in `filters`.
 var setFiltersByState = function() {
 		
@@ -207,6 +212,10 @@ var setFiltersAvailability = function() {
 		$(".filter#now").removeClass('disabled');
 	else
 		$(".filter#now").addClass('disabled');
+		
+	// Also sets the tooltips according to availability.
+	
+	
 	
 };
 
