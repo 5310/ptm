@@ -1,3 +1,5 @@
+Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
+
 1.	~~Design:~~
 	1.	~~Mock it!~~
 	2.	~~(Statically) make it!~~
@@ -11,7 +13,7 @@
 	1.	~~Set-up project tree.~~
 	2.	~~Gitify it.~~
     
-4.	Write front-end behaviors with dummy tasks:
+4.	~~Write front-end behaviors with dummy tasks:~~
 	1.	~~Settle of a filtering scheme.~~
 	2.	~~Make filters actually filter tasks according to the scheme.~~
 	3.	~~Display a message when there's nothing to show.~~
@@ -60,6 +62,7 @@
 	7.  Write proper readme.
 	8.  See if reset-file can be CDN'd.
 	9.	Be polite, and include libraries instead of hotlinking them.
+	10.	Delay the tooltips as acceptable.
         
 11. "Public" release.
     
