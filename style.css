@@ -19,17 +19,16 @@ body {
 }
 
 .filter {
-    opacity: 0.5;
+    color: #ccc;
+    text-shadow: #f9f9f9 0px 2px 0px;
 }
 
 .on{
-    opacity: 1;
     color: #888a85;
     text-shadow: #ccc 0px 2px 0px;
 }
 
 .disabled {
-    opacity: 1;
     color: #f0f0ef;
     text-shadow: #ccc 0px -1px 0px;
     cursor: default;
@@ -137,4 +136,27 @@ footer {
     font-family: eurofurence;
     font-size: 15px;
     color: #babbb8;
+}
+
+
+.tooltip {
+
+    position: absolute;
+    z-index: 3;
+    display: none;
+    
+    margin-top: -40%;
+    margin-left: -32%;
+    
+    opacity: 0.5;
+    white-space:nowrap;
+    
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+    
+    color: #888a85;
+    font-family: 'museo 300';
+    font-size: 15px;
+    
 }

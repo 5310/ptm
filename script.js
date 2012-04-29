@@ -8,17 +8,43 @@ var filters = {
 	'now':	true
 };
 
+// Hooks and messages for the tooltips.
+// Yes, this only initializes the hooks.
+var tooltips = {
+	'done': {'hook': null, 
+		'on': "Hide recently finished unsynced tasks.", 
+		'off': "Show recently finished unsynced tasks.", 
+		'disabled': "There are no unsynced recently completed tasks."},
+	'late': {'hook': null, 
+		'on': "Hide unfinished tasks from before.", 
+		'off': "Show unfinished tasks from before.", 
+		'disabled': "You have no pending tasks."},
+	'free': {'hook': null, 
+		'on': "Hide unscheduled tasks of the day.", 
+		'off': "Show unscheduled tasks of the day.", 
+		'disabled': "There are no unscheduled tasks to do today."},
+	'next': {'hook': null, 
+		'on': "Hide upcoming tasks.", 
+		'off': "Show upcoming tasks.", 
+		'disabled': "There are no more tasks scheduled for today."},
+	'now':	{'hook': null, 
+		'on': "Hide currently active tasks.", 
+		'off': "Show currently active tasks.", 
+		'disabled': "There are no tasks scheduled for right now."}
+};
 
 // The ready function.
 $(document).ready(
 	function() {
+		
+		// Sets-up Tooltips.
+		setupTooltips();
 		
 		// Sets filters by state.
 		setFiltersByState();	
 		
 		// Sets filter availability by available tasks.
 		setFiltersAvailability();			
-		
 		
 		// Handlers for the specific filter toggles.
 		
@@ -124,9 +150,68 @@ $(document).ready(
 	}
 );
 
-// Adds filters tooltips.
-var addFiltersTooltips = function() {
+// Adds tooltips and assigns hooks for updates.
+var setupTooltips = function() {
 	
+	// For the filters:
+	
+	$(".filter#done").simpletip({ content: tooltips['done']['default'], fixed: false });
+	tooltips['done']['hook'] = $(".filter#done").eq(0).simpletip(); 
+	
+	$(".filter#late").simpletip({ content: tooltips['late']['default'], fixed: false });
+	tooltips['late']['hook'] = $(".filter#late").eq(0).simpletip(); 
+	
+	$(".filter#free").simpletip({ content: tooltips['free']['default'], fixed: false });
+	tooltips['free']['hook'] = $(".filter#free").eq(0).simpletip(); 
+	
+	$(".filter#next").simpletip({ content: tooltips['next']['default'], fixed: false });
+	tooltips['next']['hook'] = $(".filter#next").eq(0).simpletip(); 
+	
+	$(".filter#now").simpletip({ content: tooltips['now']['default'], fixed: false });
+	tooltips['now']['hook'] = $(".filter#now").eq(0).simpletip(); 
+	
+};
+
+// Updates Filter tooltips based of state.
+var updateFiltersTooltips = function() {
+	
+	if ( $(".filter#done").hasClass('disabled') )
+		tooltips['done']['hook'].update(tooltips['done']['disabled']); 
+	else if ( $(".filter#done").hasClass('on') )
+		tooltips['done']['hook'].update(tooltips['done']['on']); 
+	else
+		tooltips['done']['hook'].update(tooltips['done']['off']);
+		
+	if ( $(".filter#late").hasClass('disabled') )
+		tooltips['late']['hook'].update(tooltips['late']['disabled']); 
+	else if ( $(".filter#late").hasClass('on') )
+		tooltips['late']['hook'].update(tooltips['late']['on']); 
+	else
+		tooltips['late']['hook'].update(tooltips['late']['off']);
+
+
+	if ( $(".filter#free").hasClass('disabled') )
+		tooltips['free']['hook'].update(tooltips['free']['disabled']); 
+	else if ( $(".filter#free").hasClass('on') )
+		tooltips['free']['hook'].update(tooltips['free']['on']); 
+	else
+		tooltips['free']['hook'].update(tooltips['free']['off']);
+		
+	if ( $(".filter#next").hasClass('disabled') )
+		tooltips['next']['hook'].update(tooltips['next']['disabled']); 
+	else if ( $(".filter#next").hasClass('on') )
+		tooltips['next']['hook'].update(tooltips['next']['on']); 
+	else
+		tooltips['next']['hook'].update(tooltips['next']['off']);
+
+
+	if ( $(".filter#now").hasClass('disabled') )
+		tooltips['now']['hook'].update(tooltips['now']['disabled']); 
+	else if ( $(".filter#now").hasClass('on') )
+		tooltips['now']['hook'].update(tooltips['now']['on']); 
+	else
+		tooltips['now']['hook'].update(tooltips['now']['off']);
+	 
 };
 
 // Sets filters to the state in `filters`.
@@ -214,7 +299,7 @@ var setFiltersAvailability = function() {
 		$(".filter#now").addClass('disabled');
 		
 	// Also sets the tooltips according to availability.
-	
+	updateFiltersTooltips();
 	
 	
 };
