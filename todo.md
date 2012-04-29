@@ -23,6 +23,7 @@
 	6.	~~Add disabled style.~~
 	7.	~~Remove handlers for disabler filters.~~
 	8.	~~Add relevant tool-tips for filters, disabled or otherwise.~~
+	9.	~~Add hooks for task clicks. Mark the dummy tasks done, for now.~~
 	
 5.	Get and show tasks:
 	1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.

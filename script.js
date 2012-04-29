@@ -48,7 +48,7 @@ $(document).ready(
 		
 		// Handlers for the specific filter toggles.
 		
-		$(".filter#done").not('.disabled').on("click", function(event){
+		$(".filter#done").not('.disabled').on("click", function(event) {
 			
 			// Toggle visibility of all tasks with class 'done'.
 			$('.task.done').toggle(100);
@@ -68,7 +68,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'late' filter.
-		$(".filter#late").not('.disabled').on("click", function(event){
+		$(".filter#late").not('.disabled').on("click", function(event) {
 			
 			// Toggle visibility of all tasks with class 'late' but not 'done'.
 			$('.task.late').not('.done').toggle(100);
@@ -88,7 +88,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'free' filter.
-		$(".filter#free").not('.disabled').on("click", function(event){
+		$(".filter#free").not('.disabled').on("click", function(event) {
 						
 			// Toggle visibility of all tasks with class 'free' but not 'done' or 'late'.
 			$('.task.free').not('.done').not('.late').toggle(100);
@@ -108,7 +108,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'next' filter.
-		$(".filter#next").not('.disabled').on("click", function(event){
+		$(".filter#next").not('.disabled').on("click", function(event) {
 						
 			// Toggle visibility of all tasks with class 'next' but not 'done', 'late', and 'free'.
 			$('.task.next').not('.done').not('.late').not('.free').toggle(100);
@@ -128,7 +128,7 @@ $(document).ready(
 		});
 		
 		// Handler for the 'now' filter.
-		$(".filter#now").not('.disabled').on("click", function(event){
+		$(".filter#now").not('.disabled').on("click", function(event) {
 						
 			// Toggle visibility of all tasks with class 'now' but not 'done', 'late', 'free', and 'next'.
 			$('.task.now').not('next').not('.done').not('.late').not('.free').toggle(100);
@@ -145,6 +145,18 @@ $(document).ready(
 			// Sets filter availability by available tasks.
 			setFiltersAvailability();			
 			
+		});
+
+		// Handler for the tasks.
+		$(".task").on("click", function(event) {
+			// Marks tasks as done if clicked.
+			$(this).toggleClass('done').delay(750).queue(function(next) {
+					if ( !filters['done'] )
+						$(this).hide(500);
+						next();
+				});
+			showEmptyMessage();	
+			setFiltersAvailability();
 		});
 
 	}
