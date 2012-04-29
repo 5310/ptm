@@ -14,7 +14,11 @@ $(document).ready(
 	function() {
 		
 		// Sets filters by state.
-		setFiltersByState();					
+		setFiltersByState();	
+		
+		// Sets filter availability by available tasks.
+		setFiltersAvailability();			
+		
 		
 		// Handlers for the specific filter toggles.
 		
@@ -31,6 +35,10 @@ $(document).ready(
 			
 			// Displayes empty-message if required.
 			showEmptyMessage();
+			
+			// Sets filter availability by available tasks.
+			setFiltersAvailability();			
+			
 		});
 		
 		// Handler for the 'late' filter.
@@ -47,6 +55,10 @@ $(document).ready(
 			
 			// Displayes empty-message if required.
 			showEmptyMessage();
+			
+			// Sets filter availability by available tasks.
+			setFiltersAvailability();			
+			
 		});
 		
 		// Handler for the 'free' filter.
@@ -63,6 +75,10 @@ $(document).ready(
 			
 			// Displayes empty-message if required.
 			showEmptyMessage();
+			
+			// Sets filter availability by available tasks.
+			setFiltersAvailability();			
+			
 		});
 		
 		// Handler for the 'next' filter.
@@ -79,6 +95,10 @@ $(document).ready(
 			
 			// Displayes empty-message if required.
 			showEmptyMessage();
+			
+			// Sets filter availability by available tasks.
+			setFiltersAvailability();			
+			
 		});
 		
 		// Handler for the 'now' filter.
@@ -95,6 +115,9 @@ $(document).ready(
 			
 			// Displayes empty-message if required.
 			showEmptyMessage();
+			
+			// Sets filter availability by available tasks.
+			setFiltersAvailability();			
 			
 		});
 
@@ -152,6 +175,38 @@ var setFiltersByState = function() {
 	// For the empty-message.
 	$('#emptymessage').hide();
 	showEmptyMessage();
+	
+};
+
+// Enable or disable filters depending on if there are relevant tasks available.
+var setFiltersAvailability = function() {
+	
+	// Enable or disable filters.
+	
+	if ( $('.task.done').size() > 0 )
+		$(".filter#done").removeClass('disabled');
+	else
+		$(".filter#done").addClass('disabled');
+		
+	if ( $('.task.late').not('.done').size() > 0 )
+		$(".filter#late").removeClass('disabled');
+	else
+		$(".filter#late").addClass('disabled');
+		
+	if ( $('.task.free').not('.done').not('.late').size() > 0 )
+		$(".filter#free").removeClass('disabled');
+	else
+		$(".filter#free").addClass('disabled');
+		
+	if ( $('.task.next').not('.done').not('.late').not('.free').size() > 0 )
+		$(".filter#next").removeClass('disabled');
+	else
+		$(".filter#next").addClass('disabled');
+		
+	if ( $('.task.now').not('next').not('.done').not('.late').not('.free').size() > 0 )
+		$(".filter#now").removeClass('disabled');
+	else
+		$(".filter#now").addClass('disabled');
 	
 };
 

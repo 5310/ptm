@@ -30,8 +30,8 @@ body {
 
 .disabled {
     opacity: 1;
-    color: #dfdfdf;
-    text-shadow: #999 0px -1px 0px;
+    color: #f0f0ef;
+    text-shadow: #ccc 0px -1px 0px;
     cursor: default;
 }
 
