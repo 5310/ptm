@@ -22,17 +22,7 @@
 	5.	~~Disable filters if no relevant task is present.~~
 	6.	~~Add disabled style.~~
 	7.	~~Remove handlers for disabler filters.~~
-	8.	Add relevant tool-tips for filters, disabled or otherwise.
-		Now:	Show only active tasks.
-				There are no tasks scheduled for right now.
-		Next:	Show or hide upcoming tasks.
-				There are no more tasks scheduled for today.
-		Free:	Show or hide unscheduled tasks the day.
-				There are no unscheduled tasks to do today.
-		Late:	Show or hide unfinished tasks from before.
-				You have no pending tasks.
-		Done:	Show or hide recently finished unsynced tasks.
-				There are no unsynced recently completed tasks.
+	8.	~~Add relevant tool-tips for filters, disabled or otherwise.~~
 	
 5.	Get and show tasks:
 	1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.
