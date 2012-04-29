@@ -9,7 +9,7 @@ var filters = {
 };
 
 // Hooks and messages for the tooltips.
-// Yes, this only initializes the hooks.
+// Yes, this only initializes the hooks, and does not assign them yet.
 var tooltips = {
 	'done': {'hook': null, 
 		'on': "Hide recently finished unsynced tasks.", 
@@ -32,6 +32,23 @@ var tooltips = {
 		'off': "Show currently active tasks.", 
 		'disabled': "There are no tasks scheduled for right now."}
 };
+
+// Fancy list of messages to randomly choose from.
+var empty_messages = [
+	"Looks like you're done! Or are you?",
+	"Where did all the tasks go?",
+	"This is not the task-list you're looking for.",
+	"There is but one thing left to do, live.",
+	"It is as if there weren't any tasks to begin with.",
+	"Your task is in another castle.",
+	"You've nothing else to do. For the moment...",
+	"Are you sure you had anything to do today?",
+	"Nothing ever happens in Mabase.",
+	"Gotten things done!",
+	"There, all finished. Pat yourself on the back.",
+	"Stick a fork in yourself, 'cause you're done!",
+	"Nothing to see here, move along."
+];
 
 // The ready function.
 $(document).ready(
@@ -319,24 +336,7 @@ var setFiltersAvailability = function() {
 // Shows the empty-list message.
 var showEmptyMessage = function() {
 	
-	// Fancy list of messages to randomly choose from.
-	var messages = [
-		"Looks like you're done! Or are you?",
-		"Where did all the tasks go?",
-		"This is not the task-list you're looking for.",
-		"There is but one thing left to do, live.",
-		"It is as if there weren't any tasks to begin with.",
-		"Your task is in another castle.",
-		"You've nothing else to do. For the moment...",
-		"Are you sure you had anything to do today?",
-		"Nothing ever happens in Mabase.",
-		"Gotten things done!",
-		"There, all finished. Pat yourself on the back.",
-		"Stick a fork in yourself, 'cause you're done!",
-		"Nothing to see here, move along."
-	];
-	
-	$('#emptymessage').html(messages[Math.floor((Math.random()*(messages.length+1)))]);
+	$('#emptymessage').html(empty_messages[Math.floor((Math.random()*(empty_messages.length+1)))]);
 
 	// See how many tasks are visible.
 	var visible = 0;
