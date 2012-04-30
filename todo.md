@@ -28,11 +28,12 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	9.	~~Add hooks for task clicks. Mark the dummy tasks done, for now.~~
 	
 5.	Get and show tasks:
-	1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.
-	2.	Parse task-list into HTML.
-	3.	Write updater for time-based task-tags.
+	1.	~~Get task-list filtered as desired, and store it for later use. Manually sign for now.~~
+	2.	~~Parse task-list into HTML.~~
+    3.  **Fix date parsing from RTM JSON to Date object.**
+    3.  Add task-filter-tags as applicable.
+	3.	Write an auto-updater for time-based task-tags.
     4.  Make it so that tasks is duration only stay active for that duration, and then become 'late' with "earlier" prepended.
-	5.	Test to see if everything works as it should.
 	
 6.	Authentication:
 	1.	Write authentication routine.

@@ -186,11 +186,101 @@ $(document).ready(
 var parseTasks = function() {
     
     // Empty the HTML list.
-    //$('#list').empty();
+    $('#list').empty();
     
     for ( i in tasklist ) {
         
-        console.log(tasklist[i]['name']);
+        // Create a task element.
+        var task = $('<div />').addClass('task');
+        
+        // Add classes to the task as applicable:                       //TODO: Deduce and add task classes by which the filtering is done.!
+        
+        // Populate task with information from tasklist:
+        
+        // time
+        task.append($('<div />').addClass('time').queue(
+            function() {
+                
+                // Convert due-date from task into a Date object.
+                var due = new Date(0);
+                due.setUTCSeconds(                                      //BUG: Totally not parsing right. Problem probably with how RTM stores dates.
+                    Date.parse(tasklist[i]['task']['due'])
+                );
+                
+                // Initializing date string for task.
+                var date = "";
+                var time = "";
+                
+                // Parse date.
+                if ( !task.hasClass('late') ) {                         //DEBUG not not
+                    var now = new Date();
+                    var today = new Date(
+                        now.getFullYear(), 
+                        now.getMonth()+1, 
+                        now.getDate(),
+                        0, 0, 0 );                                      // No need to add 1 to month.
+                    var diff = DateDiff.inDays(due, today);             // DateDiff is handy!
+                    console.log(diff);                                  //DEBUG
+                    if ( diff < 1 )
+                        date = "today";
+                    else if ( diff < 2 )
+                        date = "yesterday";
+                    else
+                        date = "diff"+"days ago";
+                }
+                
+                // Parse time.
+                if ( tasklist[i]['task']['has_due_time'] == '1' )
+                    time = zeropad(due.getHours(), 2)+":"+zeropad(due.getMinutes(), 2);
+                
+                // Set time.
+                $(this).text(date+" "+time);
+                
+            }
+        ));
+        
+        // priority
+        task.append($('<div />').addClass('priority').queue(
+            function() {
+                var priority_map = {
+                    "1": "···",
+                    "2": "··",
+                    "3": "·",
+                    "N": ""
+                };
+                $(this).text(priority_map[ tasklist[i]['task']['priority'] ]);
+            }
+        ));
+        
+        // text
+        task.append($('<div />').addClass('text').text(
+            // This is the simplest :]  
+            tasklist[i]['name']
+        ));
+        
+        // link
+        task.append($('<div />').addClass('link').queue(
+            function() {
+                if ( tasklist[i]['url'] )
+                    $(this).append($('<a target="_blank" />').text('@').attr('href', tasklist[i]['url']));
+            }
+        ));
+        
+        // tags
+        task.append($('<div />').addClass('tags').queue(
+            function() {
+                if ( tasklist[i]['tags']['tag'] !== undefined ) {
+                    if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) )
+                        for ( j in tasklist[i]['tags']['tag'] )
+                            $(this).append( $('<div />').text(tasklist[i]['tags']['tag'][j]) );
+                    else
+                        $(this).append( $('<div />').text(tasklist[i]['tags']['tag']) );
+                }
+            }
+        ));
+        
+        // Append the task itself to the list.
+        $('#list').append(task);
         
     }
 };
@@ -377,4 +467,38 @@ var showEmptyMessage = function() {
 	
 };
 
+var DateDiff = {
+ 
+    inDays: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+ 
+        return parseInt((t2-t1)/(24*3600*1000));
+    },
+ 
+    inWeeks: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+ 
+        return parseInt((t2-t1)/(24*3600*1000*7));
+    },
+ 
+    inMonths: function(d1, d2) {
+        var d1Y = d1.getFullYear();
+        var d2Y = d2.getFullYear();
+        var d1M = d1.getMonth();
+        var d2M = d2.getMonth();
+ 
+        return (d2M+12*d2Y)-(d1M+12*d1Y);
+    },
+ 
+    inYears: function(d1, d2) {
+        return d2.getFullYear()-d1.getFullYear();
+    }
+}
 
+var zeropad = function (num, size) {
+    var string = num+"";
+    while (string.length < size) string = "0" + string;
+    return string;
+}
