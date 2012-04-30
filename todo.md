@@ -30,7 +30,8 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 5.	Get and show tasks:
 	1.	Get task-list filtered as desired, and store it for later use. Manually sign for now.
 	2.	Parse task-list into HTML.
-	3.	Test to see if everything works as it should.
+	3.	Write updater for time-based task-tags.
+	4.	Test to see if everything works as it should.
 	
 6.	Authentication:
 	1.	Write authentication routine.
