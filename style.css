@@ -105,6 +105,10 @@ body {
     font-size: 25px;
     font-family: 'eurofurence light';
 }
+.link a {
+    color: inherit;
+    text-decoration: none;
+}
 .tags {
     font-family: eurofurence;
     font-size: 15px;
