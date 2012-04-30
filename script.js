@@ -53,6 +53,9 @@ var empty_messages = [
 // The ready function.
 $(document).ready(
 	function() {
+        
+        // Parse tasks!
+        parseTasks();
 		
 		// Sets-up Tooltips.
 		setupTooltips();
@@ -178,6 +181,19 @@ $(document).ready(
 
 	}
 );
+
+// Parse tasks from JSON to HTML.
+var parseTasks = function() {
+    
+    // Empty the HTML list.
+    //$('#list').empty();
+    
+    for ( i in tasklist ) {
+        
+        console.log(tasklist[i]['name']);
+        
+    }
+};
 
 // Adds tooltips and assigns hooks for updates.
 var setupTooltips = function() {
