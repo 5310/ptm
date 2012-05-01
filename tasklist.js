@@ -70,7 +70,7 @@ tasklist = [
 			"added": "2012-05-01T13:04:40Z", 
 			"completed": "", 
 			"deleted": "", 
-			"due": "2012-04-27T18:30:00Z", 
+			"due": "2012-04-30T18:30:00Z", 
 			"estimate": "", 
 			"has_due_time": "0", 
 			"id": "248788526", 

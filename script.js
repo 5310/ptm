@@ -211,6 +211,33 @@ var parseTasks = function() {
 	    //		now
 	    //	   else, now
 	    
+	    // Set common due-dates.
+	    var dueMs = Date.parse(tasklist[i]['task']['due']);
+	    var due = new Date(dueMs);
+	    var estimate = false; // This starts as false.
+	    var now = new Date();
+	    var today = new Date(
+                        now.getFullYear(), 
+                        now.getMonth(), 
+                        now.getDate(),
+                        0, 0, 0 );
+	    
+	    // See if task is already late.
+	    if ( DateDiff.inMs( due, today ) > 0 ) 
+		task.addClass('late');
+		
+	    // See if task is free, mon. Else...
+	    if ( tasklist[i]['task']['has_due_time'] == '0' ) 
+		task.addClass('free');
+	    else {
+		// If task is due in the future, tag as next. Else...
+		if ( DateDiff.inMs( due, now ) < 0 ) 
+		    task.addClass('next');
+		else {
+		    // For now, just tag as now.				//TODO: Add estimate calculation here.
+		    task.addClass('now');
+		}
+	    }
 	    
 	}
         
@@ -229,7 +256,7 @@ var parseTasks = function() {
                 var time = "";
                 
                 // Parse date.
-                if ( !task.hasClass('late') || task.hasClass('free') ) {       	//DEBUG not not
+                if ( task.hasClass('late') || task.hasClass('free') ) {       	
                     var now = new Date();
                     var today = new Date(
                         now.getFullYear(), 
@@ -484,6 +511,13 @@ var showEmptyMessage = function() {
 };
 
 var DateDiff = {
+    
+    inMs: function(d1, d2) {
+        var t2 = d2.getTime();
+        var t1 = d1.getTime();
+	
+	return t2-t1;
+    },
  
     inDays: function(d1, d2) {
         var t2 = d2.getTime();
