@@ -54,23 +54,23 @@ var empty_messages = [
 $(document).ready(
 	function() {
         
-        // Parse tasks!
-        parseTasks();
+	    // Parse tasks!
+	    parseTasks();
 		
-		// Sets-up Tooltips.
-		setupTooltips();
-		
-		// Sets filters by state.
-		setFiltersByState();	
-		
-		// Sets filter availability by available tasks.
-		setFiltersAvailability();			
-		
-		// Handlers for the specific filter toggles.
-		setFilterHandles();
-		
-		// Handler for the tasks.
-		setTasksHandles();
+	    // Sets-up Tooltips.
+	    setupTooltips();
+	    
+	    // Sets filters by state.
+	    setFiltersByState();	
+	    
+	    // Sets filter availability by available tasks.
+	    setFiltersAvailability();			
+	    
+	    // Handlers for the specific filter toggles.
+	    setFilterHandles();
+	    
+	    // Handler for the tasks.
+	    setTasksHandles();
 
 	}
 );
