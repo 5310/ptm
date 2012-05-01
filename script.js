@@ -194,6 +194,25 @@ var parseTasks = function() {
         var task = $('<div />').addClass('task');
         
         // Add classes to the task as applicable:                       	//TODO: Deduce and add task classes by which the filtering is done.!
+	
+	{
+	    
+	    // if late, then late
+	    // if task does not have due-date, free
+	    // else
+	    //   offset = due - now
+	    // 	 if offset future, then next
+	    //	 else 
+	    //	   if task has estimate
+	    //       make Date from estimate
+	    //	     if offset >= estimate
+	    //		late
+	    //	     else
+	    //		now
+	    //	   else, now
+	    
+	    
+	}
         
         // Populate task with information from tasklist:
         
