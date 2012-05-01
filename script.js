@@ -210,7 +210,7 @@ var parseTasks = function() {
                 var time = "";
                 
                 // Parse date.
-                if ( !task.hasClass('late') || task.hasClass('free') ) {       //DEBUG not not
+                if ( !task.hasClass('late') || task.hasClass('free') ) {       	//DEBUG not not
                     var now = new Date();
                     var today = new Date(
                         now.getFullYear(), 
@@ -218,7 +218,6 @@ var parseTasks = function() {
                         now.getDate(),
                         0, 0, 0 );                                      	// No need to add 1 to month.
                     var diff = DateDiff.inDays(due, today);             	// DateDiff is handy!
-                    console.log(diff);                                  	//DEBUG
                     if ( diff < 1 )
                         date = "today";
                     else if ( diff < 2 )
