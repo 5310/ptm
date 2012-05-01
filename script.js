@@ -263,13 +263,13 @@ var parseTasks = function() {
                         now.getMonth(), 
                         now.getDate(),
                         0, 0, 0 );                                      	// No need to add 1 to month.
-                    var diff = DateDiff.inDays(due, today);             	// DateDiff is handy!
-                    if ( diff < 1 )
+                    var diff = DateDiff.inMs(due, today);             	// DateDiff is handy!
+                    if ( diff < 0 )
                         date = "today";
-                    else if ( diff < 2 )
+                    else if ( diff < 86400000 )
                         date = "yesterday";
                     else
-                        date = diff+" days ago";
+                        date = DateDiff.inDays(due, today)+" days ago";
                 }
                 
                 // Parse time.
