@@ -198,12 +198,14 @@ var parseTasks = function() {
                 }
             }
         ));
-        
 	
         // Append the task itself to the list.
         $('#list').append(task);
         
     }
+    
+    // Sort tasks in the list.							//TODO: Sort added tasks by tags, time, and task-name.
+    
 };
 
 // Adds tooltips and assigns hooks for updates.
@@ -528,6 +530,7 @@ var showEmptyMessage = function() {
 	
 };
 
+// Utility function to return difference between date-obejcts.
 var DateDiff = {
     
     inMs: function(d1, d2) {
@@ -565,6 +568,7 @@ var DateDiff = {
     }
 }
 
+// Utility function that pads an integer with leading zeroes while returning it as a string.
 var zeropad = function (num, size) {
     var string = num+"";
     while (string.length < size) string = "0" + string;
