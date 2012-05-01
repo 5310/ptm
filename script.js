@@ -193,7 +193,7 @@ var parseTasks = function() {
         // Create a task element.
         var task = $('<div />').addClass('task');
         
-        // Add classes to the task as applicable:                       //TODO: Deduce and add task classes by which the filtering is done.!
+        // Add classes to the task as applicable:                       	//TODO: Deduce and add task classes by which the filtering is done.!
         
         // Populate task with information from tasklist:
         
@@ -203,7 +203,7 @@ var parseTasks = function() {
                 
                 // Convert due-date from task into a Date object.
                 var due = new Date(0);
-                due.setUTCSeconds(                                      //BUG: Totally not parsing right. Problem probably with how RTM stores dates.
+                due.setUTCSeconds(                                      	//BUG: Totally not parsing right. Problem probably with how RTM stores dates.
                     Date.parse(tasklist[i]['task']['due'])
                 );
                 
@@ -212,15 +212,15 @@ var parseTasks = function() {
                 var time = "";
                 
                 // Parse date.
-                if ( !task.hasClass('late') ) {                         //DEBUG not not
+                if ( !task.hasClass('late') || task.hasClass('free') ) {       //DEBUG not not
                     var now = new Date();
                     var today = new Date(
                         now.getFullYear(), 
                         now.getMonth()+1, 
                         now.getDate(),
-                        0, 0, 0 );                                      // No need to add 1 to month.
-                    var diff = DateDiff.inDays(due, today);             // DateDiff is handy!
-                    console.log(diff);                                  //DEBUG
+                        0, 0, 0 );                                      	// No need to add 1 to month.
+                    var diff = DateDiff.inDays(due, today);             	// DateDiff is handy!
+                    console.log(diff);                                  	//DEBUG
                     if ( diff < 1 )
                         date = "today";
                     else if ( diff < 2 )
