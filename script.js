@@ -202,10 +202,8 @@ var parseTasks = function() {
             function() {
                 
                 // Convert due-date from task into a Date object.
-                var due = new Date(0);
-                due.setUTCSeconds(                                      	//BUG: Totally not parsing right. Problem probably with how RTM stores dates.
-                    Date.parse(tasklist[i]['task']['due'])
-                );
+                var dueMs = Date.parse(tasklist[i]['task']['due']);
+		var due = new Date(dueMs);
                 
                 // Initializing date string for task.
                 var date = "";
@@ -216,7 +214,7 @@ var parseTasks = function() {
                     var now = new Date();
                     var today = new Date(
                         now.getFullYear(), 
-                        now.getMonth()+1, 
+                        now.getMonth(), 
                         now.getDate(),
                         0, 0, 0 );                                      	// No need to add 1 to month.
                     var diff = DateDiff.inDays(due, today);             	// DateDiff is handy!
@@ -226,7 +224,7 @@ var parseTasks = function() {
                     else if ( diff < 2 )
                         date = "yesterday";
                     else
-                        date = "diff"+"days ago";
+                        date = diff+" days ago";
                 }
                 
                 // Parse time.
