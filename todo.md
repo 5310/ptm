@@ -35,7 +35,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	3.	Write an auto-updater for time-based task-tags.
     4.  Make it so that tasks with duration only stay active for that duration, and then become 'late' with "earlier" prepended.
     5.	Sort HTML tasks as designed.
-    6.	See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.
+    6.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
 	
 6.	Authentication:
 	1.	Write authentication routine.

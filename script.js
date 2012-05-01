@@ -213,54 +213,38 @@ var parseTasks = function() {
         // Create a task element.
         var task = $('<div />').addClass('task');
         
+	
         // Add classes to the task as applicable:                       	//TODO: Deduce and add task classes by which the filtering is done.!
 	
-	{
+	// Set common due-dates.
+	var dueMs = Date.parse(tasklist[i]['task']['due']);
+	var due = new Date(dueMs);
+	var estimate = false; // This starts as false.
+	var now = new Date();
+	var today = new Date(
+		    now.getFullYear(), 
+		    now.getMonth(), 
+		    now.getDate(),
+		    0, 0, 0 );
+	
+	// See if task is already late.
+	if ( DateDiff.inMs( due, today ) > 0 ) 
+	    task.addClass('late');
 	    
-	    // if late, then late
-	    // if task does not have due-date, free
-	    // else
-	    //   offset = due - now
-	    // 	 if offset future, then next
-	    //	 else 
-	    //	   if task has estimate
-	    //       make Date from estimate
-	    //	     if offset >= estimate
-	    //		late
-	    //	     else
-	    //		now
-	    //	   else, now
-	    
-	    // Set common due-dates.
-	    var dueMs = Date.parse(tasklist[i]['task']['due']);
-	    var due = new Date(dueMs);
-	    var estimate = false; // This starts as false.
-	    var now = new Date();
-	    var today = new Date(
-                        now.getFullYear(), 
-                        now.getMonth(), 
-                        now.getDate(),
-                        0, 0, 0 );
-	    
-	    // See if task is already late.
-	    if ( DateDiff.inMs( due, today ) > 0 ) 
-		task.addClass('late');
-		
-	    // See if task is free, mon. Else...
-	    if ( tasklist[i]['task']['has_due_time'] == '0' ) 
-		task.addClass('free');
+	// See if task is free, mon. Else...
+	if ( tasklist[i]['task']['has_due_time'] == '0' ) 
+	    task.addClass('free');
+	else {
+	    // If task is due in the future, tag as next. Else...
+	    if ( DateDiff.inMs( due, now ) < 0 ) 
+		task.addClass('next');
 	    else {
-		// If task is due in the future, tag as next. Else...
-		if ( DateDiff.inMs( due, now ) < 0 ) 
-		    task.addClass('next');
-		else {
-		    // For now, just tag as now.				//TODO: Add estimate calculation here.
-		    task.addClass('now');
-		}
+		// For now, just tag as now.				//TODO: Add estimate calculation here.
+		task.addClass('now');
 	    }
-	    
 	}
         
+	
         // Populate task with information from tasklist:
         
         // time
@@ -286,7 +270,7 @@ var parseTasks = function() {
                     var diff = DateDiff.inMs(due, today);             	// DateDiff is handy!
                     if ( diff < 0 )
                         date = "today";
-                    else if ( diff < 86400000 )
+                    else if ( DateDiff.inDays(due, today) <= 86400000 )
                         date = "yesterday";
                     else
                         date = DateDiff.inDays(due, today)+" days ago";
@@ -342,6 +326,7 @@ var parseTasks = function() {
             }
         ));
         
+	
         // Append the task itself to the list.
         $('#list').append(task);
         
