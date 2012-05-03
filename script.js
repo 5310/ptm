@@ -139,8 +139,6 @@ var sortTasklist = function() {
 // Parse tasks from JSON to HTML.
 var parseTasks = function() {							
     
-    console.log("tasks aprsed");
-    
     // Empty the HTML list.
     $('#list').empty();
     
@@ -563,7 +561,7 @@ var setFilterHandles = function() {
 var setTasksHandles = function() {
   
   $(".task").on("click", function(event) {
-	    console.log("AS");
+
 	    // Marks tasks as done if clicked.
 	    $(this).toggleClass('done').delay(750).queue(function(next) {
 			    if ( !filters['done'] )
@@ -585,6 +583,7 @@ var setTasksHandles = function() {
 	    // Refresh list.
 	    showEmptyMessage();	
 	    setFiltersAvailability();
+	    
     });
 		  
 };
