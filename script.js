@@ -59,6 +59,9 @@ $(document).ready(
         
 	    // Parse tasks!
 	    parseTasks();
+	    
+	    // Sets-up time-based task-tag update.
+	    setParseTasks(1 * 60 * 1000); // minute * second * millisecond
 		
 	    // Sets-up Tooltips.
 	    setupTooltips();
@@ -114,6 +117,8 @@ var sortTasklist = function() {
 // Parse tasks from JSON to HTML.
 var parseTasks = function() {
     
+    console.log("tasks aprsed");
+    
     // Empty the HTML list.
     $('#list').empty();
     
@@ -125,40 +130,8 @@ var parseTasks = function() {
 	// Set task-id.
 	task.attr('id', tasklist[i]['id']);
 	
-        // Add classes to the task as applicable:                       	//TODO: Deduce and add task classes by which the filtering is done.!
-	
-	// Set common due-dates.
-	var dueMs = Date.parse(tasklist[i]['task']['due']);
-	var due = new Date(dueMs);
-	var estimate = false; // This starts as false.
-	var now = new Date();
-	var today = new Date(
-		    now.getFullYear(), 
-		    now.getMonth(), 
-		    now.getDate(),
-		    0, 0, 0 );
-		    
-	// See if task is already complete.
-	if ( tasklist[i]['task']['completed'] != "" )
-	    task.addClass('done');
-	
-	// See if task is already late.
-	if ( DateDiff.inMs( due, today ) > 0 ) 
-	    task.addClass('late');
-	    
-	// See if task is free, mon. Else...
-	if ( tasklist[i]['task']['has_due_time'] == '0' ) 
-	    task.addClass('free');
-	else {
-	    // If task is due in the future, tag as next. Else...
-	    if ( DateDiff.inMs( due, now ) < 0 ) 
-		task.addClass('next');
-	    else {
-		// For now, just tag as now.					//TODO: Add estimate calculation here.
-		task.addClass('now');
-	    }
-	}
-        
+        // Add classes to the task as applicable.
+	tagTaskByIndex(i, task);
 	
         // Populate task with information from tasklist:
         
@@ -245,6 +218,51 @@ var parseTasks = function() {
         $('#list').append(task);
         
     }
+    
+};
+
+// Task tagger.
+var tagTaskByIndex = function(i, task) {
+    
+    // Set up dates.
+    var dueMs = Date.parse(tasklist[i]['task']['due']);
+    var due = new Date(dueMs);
+    var estimate = false; // This starts as false.
+    var now = new Date();
+    var today = new Date(
+		now.getFullYear(), 
+		now.getMonth(), 
+		now.getDate(),
+		0, 0, 0 );
+    
+    // See if task is already complete.
+    if ( tasklist[i]['task']['completed'] != "" )
+	task.addClass('done');
+    
+    // See if task is already late.
+    if ( DateDiff.inMs( due, today ) > 0 ) 
+	task.addClass('late');
+	
+    // See if task is free, mon. Else...
+    if ( tasklist[i]['task']['has_due_time'] == '0' ) 
+	task.addClass('free');
+    else {
+	// If task is due in the future, tag as next. Else...
+	if ( DateDiff.inMs( due, now ) < 0 ) 
+	    task.addClass('next');
+	else {
+	    // For now, just tag as now.					//TODO: Add estimate calculation here.
+	    task.addClass('now');
+	}
+    }
+};
+
+// Time-based ate/now/next updater of tasks.
+
+var setparseTasks = function(delay){
+    
+    // Sets the function to repeat.
+    window.setInterval(parseTasks, delay);
     
 };
 
