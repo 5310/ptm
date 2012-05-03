@@ -36,7 +36,9 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	3.	~~Write an auto-updater for time-based task-tags.~~
     4.	~~Sort HTML tasks as designed.~~
     5.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
-    6.	Actually get the tasklist from RTM.
+    6.	~~Actually get the tasklist from RTM.~~
+    7.	See if tasklist request is returning as it should.
+    8.	See why the dates were off.
     
 6.	Personal release.
 	
