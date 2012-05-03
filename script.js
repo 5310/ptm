@@ -79,7 +79,35 @@ $(document).ready(
 );
 
 // Sort tasklist based on our proprietary algortihm...:cough:
-var sortTasklist = function {
+var sortTasklist = function() {
+    
+    //Sort lexicographically.
+    tasklist = tasklist.sort(function(a, b){
+	var a_sort = a['name'];
+	var b_sort = b['name'];
+	if ( a_sort > b_sort )
+	    return 1;
+	else
+	    return -1;
+    });
+    
+    // Sort by due-date-time.
+    tasklist = tasklist.sort(function(a, b){
+	var a_sort = Date.parse(a['task']['due']);
+	var b_sort = Date.parse(b['task']['due']);
+	return a_sort - b_sort;
+    });
+    
+    // Sort by due-time.
+    tasklist = tasklist.sort(function(a, b){
+	var a_ms = Date.parse(a['task']['due']);
+	var a_time = new Date(a_ms);
+	var a_sort = a_time.getHours()*10000 + a_time.getMinutes()*100 + a_time.getSeconds();
+	var b_ms = Date.parse(b['task']['due']);
+	var b_time = new Date(b_ms);
+	var b_sort = b_time.getHours()*10000 + b_time.getMinutes()*100 + b_time.getSeconds();
+	return a_sort - b_sort;
+    });
     
 };
 
