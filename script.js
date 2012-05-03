@@ -96,8 +96,8 @@ var sync = function() {								//BUG:
     
     // Get tasklist.
     
-    // The GET url. Callback defined and signed.				
-    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+OR+due%3A%22today%22%29+AND+status%3Aincomplete&api_sig=eba6f1ebf07002c251a9fdaaaa4523e1&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=setTasklist";
+    // The GET url. Callback defined and signed.				//BUG: Currently getting previos query wrapped in previous callback for EVERY possible query.
+    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+OR+due%3A%22today%22%29+AND+status%3Aincomplete&api_sig=ef9f28cb4046adbe0837db6dcbb5528b&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList";
     $.ajax({									
       url: url,
       dataType: "json",
@@ -107,7 +107,11 @@ var sync = function() {								//BUG:
       async: false,
       success: function(data) {
 	  setTasklist(data);
-      }
+      },
+      error: function(data) {
+	  setTasklist(data);
+      },
+      callback: null
     });
 };
 
@@ -159,13 +163,12 @@ var sortTasklist = function() {
 var setTasklist = function(data) {
     
     // Set the actual task-list.
-    console.log(data);
+    console.log(data);								//DEBUG:
     if ( data['rsp']['stat'] == "ok" ) {
 	tasklist = data['rsp']['tasks']['list'][0]['taskseries'];
 	console.log(typeof(tasklist));
     } else {
 	console.log("GET FAIL");
-	//tasklist = [];							//DEBUG:
     }
     
     // Sort freshly synced tasklist.
@@ -173,7 +176,6 @@ var setTasklist = function(data) {
     
     // Update tasks.
     update();
-    
     
 };
 
