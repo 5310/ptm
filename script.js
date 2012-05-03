@@ -122,6 +122,8 @@ var parseTasks = function() {
         // Create a task element.
         var task = $('<div />').addClass('task');
         
+	// Set task-id.
+	task.attr('id', tasklist[i]['id']);
 	
         // Add classes to the task as applicable:                       	//TODO: Deduce and add task classes by which the filtering is done.!
 	
@@ -135,6 +137,10 @@ var parseTasks = function() {
 		    now.getMonth(), 
 		    now.getDate(),
 		    0, 0, 0 );
+		    
+	// See if task is already complete.
+	if ( tasklist[i]['task']['completed'] != "" )
+	    task.addClass('done');
 	
 	// See if task is already late.
 	if ( DateDiff.inMs( due, today ) > 0 ) 
@@ -524,12 +530,26 @@ var setFilterHandles = function() {
 var setTasksHandles = function() {
   
   $(".task").on("click", function(event) {
+	    console.log("AS");
 	    // Marks tasks as done if clicked.
 	    $(this).toggleClass('done').delay(750).queue(function(next) {
 			    if ( !filters['done'] )
 				    $(this).hide(500);
-				    next();
+			    next();
 		    });
+	    
+	    // Mark done-time.
+	    var now = new Date();
+	    for ( i in tasklist ) {
+		if ( tasklist[i]['id'] == $(this).attr('id') )
+		    if ( tasklist[i]['task']['completed'] == "" )
+			tasklist[i]['task']['completed'] = now.toISOString();
+		    else
+			tasklist[i]['task']['completed'] = "";
+	    }
+	    now.toISOString();
+	    
+	    // Refresh list.
 	    showEmptyMessage();	
 	    setFiltersAvailability();
     });

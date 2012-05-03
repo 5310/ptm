@@ -26,6 +26,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	7.	~~Remove handlers for disabler filters.~~
 	8.	~~Add relevant tool-tips for filters, disabled or otherwise.~~
 	9.	~~Add hooks for task clicks. Mark the dummy tasks done, for now.~~
+	10. ~~Add time-stamps to tasklist entry when completed.~~
 	
 5.	Get and show tasks:
 	1.	~~Get task-list filtered as desired, and store it for later use. Manually sign for now.~~
