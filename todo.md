@@ -34,10 +34,8 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
     3.  ~~Fix date parsing from RTM JSON to Date object.~~
     3.  ~~Add task-filter-tags as applicable.~~
 	3.	~~Write an auto-updater for time-based task-tags.~~
-    4.  ~~Make it so that tasks with duration only stay active for that duration, and then become 'late' with "earlier" prepended.~~
-		Discarded feature. RTM stores this field in raw input-text, and not a ISO formatted date.
-    5.	~~Sort HTML tasks as designed.~~
-    6.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
+    4.	~~Sort HTML tasks as designed.~~
+    5.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
 	
 6.	Authentication:
 	1.	Write authentication routine.
