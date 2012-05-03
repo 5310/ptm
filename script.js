@@ -75,20 +75,8 @@ $(document).ready(
 	}
 );
 
-// Sync tasklist from RTM sort.
-var sync = function() {								//TODO: Add actual syncing here.
-    // Sort freshly synced tasklist.
-    sortTasklist();
-};
 
-// Chain for updating tasks from task-lists and elapsed time.
-var update = function() {
-    // Parse tasks!
-    parseTasks();
-    // Reapply handler for task-clicks.						//BUG: This shouldn't be needed. Why don't the `.on()` on tasks work?
-    setTasksHandles();
-};
-
+// One time stuff.
 var setup = function() {
     // Sets-up Tooltips.
     setupTooltips();	
@@ -101,6 +89,20 @@ var setup = function() {
 	    
     // Handler for the tasks.
     //setTasksHandles();  							//BUG: Parsing removes handles. So this will be done on `update()`.
+};
+
+// Sync tasklist from RTM sort.
+var sync = function() {								//TODO: Add actual syncing here.
+    // Sort freshly synced tasklist.
+    sortTasklist();
+};
+
+// Chain for updating tasks from task-lists and elapsed time.
+var update = function() {
+    // Parse tasks!
+    parseTasks();
+    // Reapply handler for task-clicks.						//BUG: This shouldn't be needed. Why don't the `.on()` on tasks work?
+    setTasksHandles();
 };
 
 // Sort tasklist based on our proprietary algortihm...:cough:
@@ -135,6 +137,7 @@ var sortTasklist = function() {
     });
     
 };
+
 
 // Parse tasks from JSON to HTML.
 var parseTasks = function() {							
@@ -273,11 +276,11 @@ var tagTaskByIndex = function(i, task) {
 	if ( DateDiff.inMs( due, now ) < 0 ) 
 	    task.addClass('next');
 	else {
-	    // For now, just tag as now.					//TODO: Add estimate calculation here.
 	    task.addClass('now');
 	}
     }
 };
+
 
 // Adds tooltips and assigns hooks for updates.
 var setupTooltips = function() {
@@ -300,6 +303,7 @@ var setupTooltips = function() {
 	tooltips['now']['hook'] = $(".filter#now").eq(0).simpletip(); 
 	
 };
+
 
 // Updates Filter tooltips based of state.
 var updateFiltersTooltips = function() {
@@ -557,6 +561,7 @@ var setFilterHandles = function() {
 		
 };
 
+
 // Adds on-click handlers to tasks so that they get marked un/done.
 var setTasksHandles = function() {
   
@@ -588,6 +593,7 @@ var setTasksHandles = function() {
 		  
 };
 
+
 // Shows the empty-list message.
 var showEmptyMessage = function() {
 	
@@ -615,6 +621,7 @@ var showEmptyMessage = function() {
 		$('#emptymessage').show(100);
 	
 };
+
 
 // Utility function to return difference between date-obejcts.
 var DateDiff = {
