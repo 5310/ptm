@@ -240,8 +240,6 @@ var parseTasks = function() {
         
     }
     
-    // Sort tasks in the list.							//TODO: Sort added tasks by tags, time, and task-name.
-    
 };
 
 // Adds tooltips and assigns hooks for updates.
