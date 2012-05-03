@@ -53,6 +53,9 @@ var empty_messages = [
 // The ready function.
 $(document).ready(
 	function() {
+	    
+	    // Sort the tasklist before parsing.
+	    sortTasklist();
         
 	    // Parse tasks!
 	    parseTasks();
@@ -74,6 +77,11 @@ $(document).ready(
 
 	}
 );
+
+// Sort tasklist based on our proprietary algortihm...:cough:
+var sortTasklist = function {
+    
+};
 
 // Parse tasks from JSON to HTML.
 var parseTasks = function() {
