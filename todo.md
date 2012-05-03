@@ -36,12 +36,15 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	3.	~~Write an auto-updater for time-based task-tags.~~
     4.	~~Sort HTML tasks as designed.~~
     5.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
+    6.	Actually get the tasklist from RTM.
+    
+6.	Personal release.
 	
-6.	Authentication:
+7.	Authentication:
 	1.	Write authentication routine.
 	2.	Set up linked scripts for the smallest leak of API key. REMEMBER: gitignore this file!
 
-7.	Fleshing things out:
+8.	Fleshing things out:
 	1.	Make sure to set-up success and failure and loading messages for every call.
 	2.	Implement refresh/sync routines:
 		1.	Implement pending changes notification.
@@ -50,14 +53,14 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 		4.	Make it so that the 'done' tasks only show between refresh, if any.
 	3.	Write task-completing routine.
     
-8.	Personal release.
-
-9.  Use user-provided API keys.
+9.	Private feature-complete release.
+    
+10.  Use user-provided API keys.
 	1.  Write GUI way to input API keys from other users. Provide simple instructions, and a warning.
 	2.	Store key to cookies or local-stores.
 	3.	Make everything use this key for signing instead of the linked file.
 	
-10. Pre-release polish.
+11. Pre-release polish.
 	1.  Use @font-face, and add fallback.
 	2.  Refactor CSS for cleanliness.
 	3.  Add noscript message.
@@ -70,8 +73,8 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	10.	Delay the tooltips as acceptable.
 	11.	Add MOAR empty-messages!
         
-11. "Public" release.
+12. "Public" release.
     
-12. Post-release polish.
+13. Post-release polish.
 	1.  Make site work well with mobile devices with proper style.
 	2.	Maybe include a dynamic favicon which displays pending tasks?
