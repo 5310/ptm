@@ -1,5 +1,12 @@
+// Delay for the recurring function that parses tasks in ms.
+var update_delay = 1 * 10 * 1000;
+
+// Delay for the recurring function that syncs the tasklist in ms.
+var sync_delay = 10 * 60 * 1000;
+
+
 // Default filter-states.		
-// Override for persistence.													//TODO: Not yet persistent.
+// Override for persistence.							//TODO: Not yet persistent.
 var filters = {
 	'done': false,
 	'late': true,
@@ -54,32 +61,47 @@ var empty_messages = [
 $(document).ready(
 	function() {
 	    
-	    // Sort the tasklist before parsing.
-	    sortTasklist();
-        
-	    // Parse tasks!
-	    parseTasks();
-	    
-	    // Sets-up time-based task-tag update.
-	    setParseTasks(1 * 60 * 1000); // minute * second * millisecond
-		
 	    // Sets-up Tooltips.
-	    setupTooltips();
+	    setup();
 	    
-	    // Sets filters by state.
-	    setFiltersByState();	
+	    // Syncs and updates.
+	    sync();
+	    update();
 	    
-	    // Sets filter availability by available tasks.
-	    setFiltersAvailability();			
-	    
-	    // Handlers for the specific filter toggles.
-	    setFilterHandles();
-	    
-	    // Handler for the tasks.
-	    setTasksHandles();
+	    // Sets-up recurring routines.
+	    window.setInterval(sync, sync_delay);
+	    window.setInterval(update, update_delay);
 
 	}
 );
+
+// Sync tasklist from RTM sort.
+var sync = function() {								//TODO: Add actual syncing here.
+    // Sort freshly synced tasklist.
+    sortTasklist();
+};
+
+// Chain for updating tasks from task-lists and elapsed time.
+var update = function() {
+    // Parse tasks!
+    parseTasks();
+    // Reapply handler for task-clicks.						//BUG: This shouldn't be needed. Why don't the `.on()` on tasks work?
+    setTasksHandles();
+};
+
+var setup = function() {
+    // Sets-up Tooltips.
+    setupTooltips();	
+	    
+    // Sets filter availability by available tasks.
+    setFiltersAvailability();			
+	    
+    // Handlers for the specific filter toggles.
+    setFilterHandles();
+	    
+    // Handler for the tasks.
+    //setTasksHandles();  							//BUG: Parsing removes handles. So this will be done on `update()`.
+};
 
 // Sort tasklist based on our proprietary algortihm...:cough:
 var sortTasklist = function() {
@@ -115,7 +137,7 @@ var sortTasklist = function() {
 };
 
 // Parse tasks from JSON to HTML.
-var parseTasks = function() {
+var parseTasks = function() {							
     
     console.log("tasks aprsed");
     
@@ -216,6 +238,8 @@ var parseTasks = function() {
 	
         // Append the task itself to the list.
         $('#list').append(task);
+	
+	setFiltersByState();
         
     }
     
@@ -255,15 +279,6 @@ var tagTaskByIndex = function(i, task) {
 	    task.addClass('now');
 	}
     }
-};
-
-// Time-based ate/now/next updater of tasks.
-
-var setparseTasks = function(delay){
-    
-    // Sets the function to repeat.
-    window.setInterval(parseTasks, delay);
-    
 };
 
 // Adds tooltips and assigns hooks for updates.
