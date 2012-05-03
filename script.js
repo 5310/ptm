@@ -98,14 +98,16 @@ var sync = function() {								//BUG:
     
     // The GET url. Callback defined and signed.				
     var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+OR+due%3A%22today%22%29+AND+status%3Aincomplete&api_sig=eba6f1ebf07002c251a9fdaaaa4523e1&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=setTasklist";
-    $.ajax({									//BUG: Response does not get wrapped in callback function if succeeds. Failure passes okay. :[
+    $.ajax({									
       url: url,
-      dataType: "script",
+      dataType: "json",
       type: "GET",
       cache: true,
-      callback: null,
       data: null,
       async: false,
+      success: function(data) {
+	  setTasklist(data);
+      }
     });
 };
 
@@ -159,7 +161,8 @@ var setTasklist = function(data) {
     // Set the actual task-list.
     console.log(data);
     if ( data['rsp']['stat'] == "ok" ) {
-	tasklist = data['rsp']['tasks']['list'];
+	tasklist = data['rsp']['tasks']['list'][0]['taskseries'];
+	console.log(typeof(tasklist));
     } else {
 	console.log("GET FAIL");
 	//tasklist = [];							//DEBUG:
