@@ -66,7 +66,7 @@ $(document).ready(
 	    
 	    // Syncs and updates.
 	    sync();
-	    update();
+	    //update();
 	    
 	    // Sets-up recurring routines.
 	    window.setInterval(sync, sync_delay);
@@ -93,8 +93,20 @@ var setup = function() {
 
 // Sync tasklist from RTM sort.
 var sync = function() {								//TODO: Add actual syncing here.
-    // Sort freshly synced tasklist.
-    sortTasklist();
+    
+    // Get tasklist.
+    
+    // The GET url. Callback defined and signed.				//BUG: Signature invalid, apparently.
+    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+OR+due%3A%22today%22%29+AND+status%3Aincomplete&api_sig=43da31605a13940487e0d6cd4c612fef&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=setTasklist";
+    $.ajax({
+      url: url,
+      dataType: "script",
+      type: "GET",
+      cache: true,
+      callback: null,
+      data: null,
+      async: false,
+    });
 };
 
 // Chain for updating tasks from task-lists and elapsed time.
@@ -103,6 +115,9 @@ var update = function() {
     parseTasks();
     // Reapply handler for task-clicks.						//BUG: This shouldn't be needed. Why don't the `.on()` on tasks work?
     setTasksHandles();
+    // Refresh list.
+    showEmptyMessage();
+    setFiltersAvailability();
 };
 
 // Sort tasklist based on our proprietary algortihm...:cough:
@@ -138,6 +153,26 @@ var sortTasklist = function() {
     
 };
 
+// Sets the tasklist from the GET reponse.
+var setTasklist = function(data) {
+    
+    // Set the actual task-list.
+    console.log(data);
+    if ( data['rsp']['stat'] == "ok" ) {
+	tasklist = data['rsp']['tasks']['list'];
+    } else {
+	console.log("GET FAIL");
+	//tasklist = [];							//DEBUG:
+    }
+    
+    // Sort freshly synced tasklist.
+    sortTasklist();
+    
+    // Update tasks.
+    update();
+    
+    
+};
 
 // Parse tasks from JSON to HTML.
 var parseTasks = function() {							
@@ -571,6 +606,11 @@ var setTasksHandles = function() {
 	    $(this).toggleClass('done').delay(750).queue(function(next) {
 			    if ( !filters['done'] )
 				    $(this).hide(500);
+
+			    // Refresh list.
+			    showEmptyMessage();
+			    setFiltersAvailability();
+				    
 			    next();
 		    });
 	    
@@ -584,10 +624,6 @@ var setTasksHandles = function() {
 			tasklist[i]['task']['completed'] = "";
 	    }
 	    now.toISOString();
-	    
-	    // Refresh list.
-	    showEmptyMessage();	
-	    setFiltersAvailability();
 	    
     });
 		  
