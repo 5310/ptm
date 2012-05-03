@@ -66,7 +66,7 @@ $(document).ready(
 	    
 	    // Syncs and updates.
 	    sync();
-	    //update();
+	    update();
 	    
 	    // Sets-up recurring routines.
 	    window.setInterval(sync, sync_delay);
@@ -92,13 +92,13 @@ var setup = function() {
 };
 
 // Sync tasklist from RTM sort.
-var sync = function() {								//TODO: Add actual syncing here.
+var sync = function() {								//BUG:
     
     // Get tasklist.
     
     // The GET url. Callback defined and signed.				
     var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+OR+due%3A%22today%22%29+AND+status%3Aincomplete&api_sig=eba6f1ebf07002c251a9fdaaaa4523e1&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=setTasklist";
-    $.ajax({
+    $.ajax({									//BUG: Response does not get wrapped in callback function if succeeds. Failure passes okay. :[
       url: url,
       dataType: "script",
       type: "GET",
