@@ -41,6 +41,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	10.	~~See why the dates were off.~~
 	11.	~~See why the AJAX call only works in Chrome right now. Write generic-callback.~~
 	12.	Rewrite filter to also get tasks done _today_.
+	13. Parse url strings to a proper url before affixing.
     
 6.	~~v1 - Personal release.~~
     
