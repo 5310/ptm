@@ -231,9 +231,10 @@ var parseTasks = function() {
                         now.getDate(),
                         0, 0, 0 );                                      	
                     var diff = DateDiff.inMs(due, today);             		// DateDiff is handy!
-                    if ( diff < 0 )
+		    console.log(diff);
+                    if ( diff <= 0 )
                         date = "today";
-                    else if ( DateDiff.inDays(due, today) <= 86400000 )
+                    else if ( DateDiff.inDays(due, today) <= 1 )
                         date = "yesterday";
                     else
                         date = DateDiff.inDays(due, today)+" days ago";
