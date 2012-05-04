@@ -5,6 +5,7 @@ var update_delay = 1 * 10 * 1000;
 var sync_delay = 10 * 60 * 1000;
 
 
+
 // Default filter-states.		
 // Override for persistence.							//TODO: Not yet persistent.
 var filters = {
@@ -57,6 +58,12 @@ var empty_messages = [
 	"Nothing to see here, move along."
 ];
 
+
+
+var response;
+
+var tasklist = [];
+
 // The ready function.
 $(document).ready(
 	function() {
@@ -74,6 +81,7 @@ $(document).ready(
 
 	}
 );
+
 
 
 // One time stuff.
@@ -125,6 +133,8 @@ var update = function() {
     showEmptyMessage();
     setFiltersAvailability();
 };
+
+
 
 // Sort tasklist based on our proprietary algortihm...:cough:
 var sortTasklist = function() {
@@ -178,6 +188,8 @@ var setTasklist = function(data) {
     update();
     
 };
+
+
 
 // Parse tasks from JSON to HTML.
 var parseTasks = function() {							
@@ -322,6 +334,7 @@ var tagTaskByIndex = function(i, task) {
 };
 
 
+
 // Adds tooltips and assigns hooks for updates.
 var setupTooltips = function() {
 	
@@ -343,6 +356,7 @@ var setupTooltips = function() {
 	tooltips['now']['hook'] = $(".filter#now").eq(0).simpletip(); 
 	
 };
+
 
 
 // Updates Filter tooltips based of state.
@@ -602,6 +616,7 @@ var setFilterHandles = function() {
 };
 
 
+
 // Adds on-click handlers to tasks so that they get marked un/done.
 var setTasksHandles = function() {
   
@@ -635,6 +650,7 @@ var setTasksHandles = function() {
 };
 
 
+
 // Shows the empty-list message.
 var showEmptyMessage = function() {
 	
@@ -662,6 +678,7 @@ var showEmptyMessage = function() {
 		$('#emptymessage').show(100);
 	
 };
+
 
 
 // Utility function to return difference between date-obejcts.
