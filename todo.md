@@ -40,7 +40,6 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	9.	~~See if tasklist request is returning as it should.~~
 	10.	~~See why the dates were off.~~
 	11.	~~See why the AJAX call only works in Chrome right now. Write generic-callback.~~
-	12.	Write first-sync notification.
     
 6.	Personal release.
 	
