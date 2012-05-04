@@ -1,8 +1,8 @@
 // Delay for the recurring function that parses tasks in ms.
-var update_delay = 1 * 10 * 1000;
+var update_delay = 1 * 60 * 1000;
 
 // Delay for the recurring function that syncs the tasklist in ms.
-var sync_delay = 10 * 60 * 1000;
+var sync_delay = 5 * 60 * 1000;
 
 
 
