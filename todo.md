@@ -41,7 +41,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	10.	~~See why the dates were off.~~
 	11.	~~See why the AJAX call only works in Chrome right now. Write generic-callback.~~
     
-6.	Personal release.
+6.	~~v1 - Personal release.~~
 	
 7.	Authentication:
 	1.	Write authentication routine.
