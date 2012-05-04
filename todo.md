@@ -26,7 +26,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	7.	~~Remove handlers for disabler filters.~~
 	8.	~~Add relevant tool-tips for filters, disabled or otherwise.~~
 	9.	~~Add hooks for task clicks. Mark the dummy tasks done, for now.~~
-	10. 	~~Add time-stamps to tasklist entry when completed.~~
+	10. ~~Add time-stamps to tasklist entry when completed.~~
 	
 5.	Get and show tasks:
 	1.	~~Get task-list filtered as desired, and store it for later use. Manually sign for now.~~
@@ -40,6 +40,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	9.	~~See if tasklist request is returning as it should.~~
 	10.	~~See why the dates were off.~~
 	11.	~~See why the AJAX call only works in Chrome right now. Write generic-callback.~~
+	12.	Rewrite filter to also get tasks done _today_.
     
 6.	~~v1 - Personal release.~~
     
