@@ -74,6 +74,11 @@ $(document).ready(
 	    // Sets-up recurring routines.
 	    window.setInterval(sync, sync_delay);
 	    window.setInterval(update, update_delay);
+	    
+	    // Make the 'ptm' text refresh the page, for now.			// TODO: Syncing should be explicit... Not that way.
+	    $('#ptm').click(function() {
+		location.reload();
+	    });
 
 	}
 );
