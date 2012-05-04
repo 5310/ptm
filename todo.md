@@ -31,15 +31,16 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 5.	Get and show tasks:
 	1.	~~Get task-list filtered as desired, and store it for later use. Manually sign for now.~~
 	2.	~~Parse task-list into HTML.~~
-    3.  ~~Fix date parsing from RTM JSON to Date object.~~
-    3.  ~~Add task-filter-tags as applicable.~~
-	3.	~~Write an auto-updater for time-based task-tags.~~
-    4.	~~Sort HTML tasks as designed.~~
-    5.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
-    6.	~~Actually get the tasklist from RTM.~~
-    7.	~~See if tasklist request is returning as it should.~~
-    8.	~~See why the dates were off.~~
-    9.	See why the AJAX call only works in Chrome right now.
+	3.  	~~Fix date parsing from RTM JSON to Date object.~~
+	4.  	~~Add task-filter-tags as applicable.~~
+	5.	~~Write an auto-updater for time-based task-tags.~~
+	6.	~~Sort HTML tasks as designed.~~
+	7.	~~See why the 'done' filter comes alive if there's a completed task, but does nothing when clicked.~~
+	8.	~~Actually get the tasklist from RTM.~~
+	9.	~~See if tasklist request is returning as it should.~~
+	10.	~~See why the dates were off.~~
+	11.	~~See why the AJAX call only works in Chrome right now. Write generic-callback.~~
+	12.	Write first-sync notification.
     
 6.	Personal release.
 	

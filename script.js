@@ -80,6 +80,9 @@ $(document).ready(
 
 
 
+// A global state.
+var state = 0;
+
 // A global variable to contain received response JSON.
 var response;
 
@@ -104,25 +107,23 @@ var setup = function() {
 // Sync tasklist from RTM sort.
 var sync = function() {								//BUG:
     
-    // Get tasklist.
+    // Set state so that setTasklist is called.
+    state = 1;
     
+    // Get tasklist.
     // The GET url. Callback defined and signed.				//BUG: Currently getting previos query wrapped in previous callback for EVERY possible query.
-    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+OR+due%3A%22today%22%29+AND+status%3Aincomplete&api_sig=ef9f28cb4046adbe0837db6dcbb5528b&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList";
+    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday%29+OR+due%3Atoday%29+AND+status%3Aincomplete&api_sig=56f071c4a7c6052249cb0852aefa6da5&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=callback";
     $.ajax({									
       url: url,
-      dataType: "json",
+      dataType: "script",
       type: "GET",
       cache: true,
       data: null,
       async: false,
-      success: function(data) {
-	  setTasklist(data);
-      },
-      error: function(data) {
-	  setTasklist(data);
-      },
       callback: null
     });
+    
+    console.log("Sync function has asynchronously finished, despite flag.");	//DEBUG:
 };
 
 // Chain for updating tasks from task-lists and elapsed time.
@@ -134,6 +135,20 @@ var update = function() {
     // Refresh list.
     showEmptyMessage();
     setFiltersAvailability();
+};
+
+// Generic callback that sets the received response locally.
+var callback = function(data) {
+    console.log("Got response fair and square.");				//DEBUG:
+    response = data;
+    switch ( state ) {
+	case 0:
+	    break;
+	case 1:
+	    setTasklist();
+	default:
+	    break;
+    }
 };
 
 
@@ -172,12 +187,12 @@ var sortTasklist = function() {
 };
 
 // Sets the tasklist from the GET reponse.
-var setTasklist = function(data) {
+var setTasklist = function() {
     
     // Set the actual task-list.
-    console.log(data);								//DEBUG:
-    if ( data['rsp']['stat'] == "ok" ) {
-	tasklist = data['rsp']['tasks']['list'][0]['taskseries'];
+    console.log(response);								//DEBUG:
+    if ( response['rsp']['stat'] == "ok" ) {
+	tasklist = response['rsp']['tasks']['list'][0]['taskseries'];
 	console.log(typeof(tasklist));
     } else {
 	console.log("GET FAIL");
