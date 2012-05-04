@@ -58,7 +58,6 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 		4.	Make it so that the 'done' tasks only show between refresh, if any.
 	3.	Write task-completing routine.
 
-	
 9. Pre-release polish.
 	1.  Use @font-face, and add fallback.
 	2.  Refactor CSS for cleanliness.
