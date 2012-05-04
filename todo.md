@@ -66,6 +66,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 11. Pre-release polish.
 	1.  Use @font-face, and add fallback.
 	2.  Refactor CSS for cleanliness.
+	3.  See that the colors and type are also readable in Firefox. Unfortunately, this isn't automatically assumable.
 	3.  Add noscript message.
 	4.  Make sure to meet branding guidelines and licensing messages.
 	5.  Double-check HTML metadata.
