@@ -60,10 +60,6 @@ var empty_messages = [
 
 
 
-var response;
-
-var tasklist = [];
-
 // The ready function.
 $(document).ready(
 	function() {
@@ -83,6 +79,12 @@ $(document).ready(
 );
 
 
+
+// A global variable to contain received response JSON.
+var response;
+
+// A global container for all JSON tasks.
+var tasklist = [];
 
 // One time stuff.
 var setup = function() {
@@ -231,7 +233,6 @@ var parseTasks = function() {
                         now.getDate(),
                         0, 0, 0 );                                      	
                     var diff = DateDiff.inMs(due, today);             		// DateDiff is handy!
-		    console.log(diff);
                     if ( diff <= 0 )
                         date = "today";
                     else if ( DateDiff.inDays(due, today) <= 1 )
