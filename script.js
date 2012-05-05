@@ -641,12 +641,12 @@ var setFilterHandles = function() {
 // Adds on-click handlers to tasks so that they get marked un/done.
 var setTasksHandles = function() {
   
-  $(".task").on("click", function(event) {
+  $(".task > *").not('.link').on("click", function(event) {
 
 	    // Marks tasks as done if clicked.
-	    $(this).toggleClass('done').delay(750).queue(function(next) {
+	    $(this).closest(".task").toggleClass('done').delay(750).queue(function(next) {
 			    if ( !filters['done'] )
-				    $(this).hide(500);
+				    $(this).closest(".task").hide(500);
 
 			    // Refresh list.
 			    showEmptyMessage();
@@ -658,7 +658,7 @@ var setTasksHandles = function() {
 	    // Mark done-time.
 	    var now = new Date();
 	    for ( i in tasklist ) {
-		if ( tasklist[i]['id'] == $(this).attr('id') )
+		if ( tasklist[i]['id'] == $(this).closest(".task").attr('id') )
 		    if ( tasklist[i]['task']['completed'] == "" )
 			tasklist[i]['task']['completed'] = now.toISOString();
 		    else
