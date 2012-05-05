@@ -42,7 +42,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	11.	~~See why the AJAX call only works in Chrome right now. Write generic-callback.~~
 	12.	~~Rewrite filter to also get tasks done _today_.~~
 	13. ~~Parse url strings to a proper url before affixing.~~
-	14.	Stop task from being done if url is clicked.
+	14.	~~Make only the task label complete it.~~
     
 6.	~~v1 - Personal release.~~
     
