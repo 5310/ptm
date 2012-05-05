@@ -290,7 +290,10 @@ var parseTasks = function() {
         task.append($('<div />').addClass('link').queue(
             function() {
                 if ( tasklist[i]['url'] )
-                    $(this).append($('<a target="_blank" />').text('@').attr('href', tasklist[i]['url']));
+		    if ( tasklist[i]['url'].search(/^.+:\/\//i) >= 0 ) // If url has its papers in order.
+			$(this).append($('<a target="_blank" />').text('@').attr('href', tasklist[i]['url']));
+		    else
+			$(this).append($('<a target="_blank" />').text('@').attr('href', "http://"+tasklist[i]['url']));
             }
         ));
         
