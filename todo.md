@@ -59,6 +59,8 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 		3.	Implement automatic syncing with a modest refresh rate.
 		4.	Make it so that the 'done' tasks only show between refresh, if any.
 	3.	Write task-completing routine.
+	4.	Make filter states persistent.
+	5.	Make tooltips work in Firefox.
 
 9. Pre-release polish.
 	1.  Use @font-face, and add fallback.
