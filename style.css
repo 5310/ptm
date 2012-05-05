@@ -60,10 +60,6 @@ body {
     color: #555753;
     opacity: 0.75;
 }
-.task:hover {
-    text-shadow: #babbb8 0px 0px 2px;
-    cursor: pointer;
-}
 .now{
     opacity: 1;
 }
@@ -98,12 +94,17 @@ body {
 }
 .text:hover {
     text-shadow: #babbb8 0px 0px 2px;
+    cursor: pointer;
 }
 .link {
     display: inline;
     font-align: right;
     font-size: 25px;
     font-family: 'eurofurence light';
+}
+.link:hover {
+    text-shadow: #babbb8 0px 0px 2px;
+    cursor: pointer;
 }
 .link a {
     color: inherit;
@@ -118,7 +119,6 @@ body {
     display: inline;
     margin-right: 4px;
 }
-
 
 #emptymessage {
     position: relative; 

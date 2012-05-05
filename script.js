@@ -641,7 +641,7 @@ var setFilterHandles = function() {
 // Adds on-click handlers to tasks so that they get marked un/done.
 var setTasksHandles = function() {
   
-  $(".task > *").not('.link').on("click", function(event) {
+  $(".task > .text").on("click", function(event) {			// Wast `$(".task > .*").not('.link')` but this is more usable.
 
 	    // Marks tasks as done if clicked.
 	    $(this).closest(".task").toggleClass('done').delay(750).queue(function(next) {
