@@ -17,7 +17,7 @@ If the reader would like to see what else is planned, and how far along the path
 Caveats
 -------
 
-For now -- as asserted -- PTM is hard-coded to display tasks from my _personal_ todo list. Now, my todo list isn't actually a secret, but it's not supposed to be public either. This will change soon as I proper authentication onto it. 
+For now -- as asserted -- PTM is hard-coded to display tasks from my _personal_ todo list. Now, my todo list isn't actually a secret, but it's not supposed to be public either. This will change soon as I add some proper authentication onto it. 
 
 But it seems that there is _no_ way to keep my secret key a secret, so in order to do that, I'll probably resort to getting the user to generate and use their own keys and then authenticate themselves. This would be a one-time-affair, hopefully.
 
