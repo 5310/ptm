@@ -62,6 +62,7 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	3.	Write task-completing routine.
 	4.	Make filter states persistent.
 	5.	Make tooltips work in Firefox.
+	6.	See to it if some pinging is possible to solve the no-RTM-update = no-PTM-update problem.
 
 9. Pre-release polish.
 	1.  Use @font-face, and add fallback.
