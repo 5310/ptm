@@ -9,6 +9,7 @@ var sync_delay = 5 * 60 * 1000;
 // Default filter-states.		
 // Override for persistence.							//TODO: Not yet persistent.
 var filters = {
+	'goal': false,
 	'done': false,
 	'late': true,
 	'free': true,
@@ -19,6 +20,10 @@ var filters = {
 // Hooks and messages for the tooltips.
 // Yes, this only initializes the hooks, and does not assign them yet.
 var tooltips = {
+	'goal': {'hook': null, 
+		'on': "Hide active goals.", 
+		'off': "Show active goals.", 
+		'disabled': "There are no goals left to score."},
 	'done': {'hook': null, 
 		'on': "Hide recently finished unsynced tasks.", 
 		'off': "Show recently finished unsynced tasks.", 
@@ -332,6 +337,17 @@ var tagTaskByIndex = function(i, task) {
 		now.getMonth(), 
 		now.getDate(),
 		0, 0, 0 );
+	
+    // See if task is a goal.
+    if ( tasklist[i]['tags']['tag'] !== undefined ) {
+	if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) )
+	    for ( j in tasklist[i]['tags']['tag'] )
+		if ( tasklist[i]['tags']['tag'][j] == "goal" )
+		    task.addClass('goal');
+	else
+	    if ( tasklist[i]['tags']['tag'] == "goal" )
+		    task.addClass('goal');
+    }
     
     // See if task is already complete.
     if ( tasklist[i]['task']['completed'] != "" )
@@ -361,6 +377,9 @@ var setupTooltips = function() {
 	
 	// For the filters:
 	
+	$(".filter#goal").simpletip({ content: tooltips['goal']['default'], fixed: false });
+	tooltips['goal']['hook'] = $(".filter#goal").eq(0).simpletip(); 
+	
 	$(".filter#done").simpletip({ content: tooltips['done']['default'], fixed: false });
 	tooltips['done']['hook'] = $(".filter#done").eq(0).simpletip(); 
 	
@@ -382,6 +401,13 @@ var setupTooltips = function() {
 
 // Updates Filter tooltips based of state.
 var updateFiltersTooltips = function() {
+    
+	if ( $(".filter#goal").hasClass('disabled') )
+		tooltips['goal']['hook'].update(tooltips['goal']['disabled']); 
+	else if ( $(".filter#goal").hasClass('on') )
+		tooltips['goal']['hook'].update(tooltips['goal']['on']); 
+	else
+		tooltips['goal']['hook'].update(tooltips['goal']['off']);
 	
 	if ( $(".filter#done").hasClass('disabled') )
 		tooltips['done']['hook'].update(tooltips['done']['disabled']); 
@@ -481,27 +507,32 @@ var setFiltersAvailability = function() {
 	
 	// Enable or disable filters.
 	
-	if ( $('.task.done').size() > 0 )
+	if ( $('.task.goal').size() > 0 )
+		$(".filter#goal").removeClass('disabled');
+	else
+		$(".filter#goal").addClass('disabled');
+	
+	if ( $('.task.done').not('.goal').size() > 0 )
 		$(".filter#done").removeClass('disabled');
 	else
 		$(".filter#done").addClass('disabled');
 		
-	if ( $('.task.late').not('.done').size() > 0 )
+	if ( $('.task.late').not('.goal').not('.done').size() > 0 )
 		$(".filter#late").removeClass('disabled');
 	else
 		$(".filter#late").addClass('disabled');
 		
-	if ( $('.task.free').not('.done').not('.late').size() > 0 )
+	if ( $('.task.free').not('.goal').not('.done').not('.late').size() > 0 )
 		$(".filter#free").removeClass('disabled');
 	else
 		$(".filter#free").addClass('disabled');
 		
-	if ( $('.task.next').not('.done').not('.late').not('.free').size() > 0 )
+	if ( $('.task.next').not('.goal').not('.done').not('.late').not('.free').size() > 0 )
 		$(".filter#next").removeClass('disabled');
 	else
 		$(".filter#next").addClass('disabled');
 		
-	if ( $('.task.now').not('next').not('.done').not('.late').not('.free').size() > 0 )
+	if ( $('.task.now').not('next').not('.goal').not('.done').not('.late').not('.free').size() > 0 )
 		$(".filter#now").removeClass('disabled');
 	else
 		$(".filter#now").addClass('disabled');
@@ -515,12 +546,35 @@ var setFiltersAvailability = function() {
 // Adds on-click handlers to events.
 var setFilterHandles = function() {
     
+    $(".filter#goal").on("click", function(event) {
+	    
+	if ( !$(this).hasClass('disabled') ) {
+	    
+	    // Toggle visibility of all tasks with class 'goal'.
+	    $('.task.goal').toggle(100);
+	    
+	    // Toggle 'on' class on the filter itself.
+	    $(".filter#goal").toggleClass('on');
+	    
+	    // Toggle filter-state.
+	    filters['goal'] = !filters['goal'];
+	    
+	    // Displayes empty-message if required.
+	    showEmptyMessage();
+	    
+	    // Sets filter availability by available tasks.
+	    setFiltersAvailability();			
+	    
+	}
+	    
+    });
+    
     $(".filter#done").on("click", function(event) {
 	    
 	if ( !$(this).hasClass('disabled') ) {
 	    
 	    // Toggle visibility of all tasks with class 'done'.
-	    $('.task.done').toggle(100);
+	    $('.task.done').not('.goal').toggle(100);
 	    
 	    // Toggle 'on' class on the filter itself.
 	    $(".filter#done").toggleClass('on');
@@ -544,7 +598,7 @@ var setFilterHandles = function() {
 	if ( !$(this).hasClass('disabled') ) {
 	    
 	    // Toggle visibility of all tasks with class 'late' but not 'done'.
-	    $('.task.late').not('.done').toggle(100);
+	    $('.task.late').not('.goal').not('.done').toggle(100);
 	    
 	    // Toggle 'on' class on the filter itself.
 	    $(".filter#late").toggleClass('on');
@@ -568,7 +622,7 @@ var setFilterHandles = function() {
 	if ( !$(this).hasClass('disabled') ) {
 				    
 	    // Toggle visibility of all tasks with class 'free' but not 'done' or 'late'.
-	    $('.task.free').not('.done').not('.late').toggle(100);
+	    $('.task.free').not('.goal').not('.done').not('.late').toggle(100);
 	    
 	    // Toggle 'on' class on the filter itself.
 	    $(".filter#free").toggleClass('on');
@@ -592,7 +646,7 @@ var setFilterHandles = function() {
 	if ( !$(this).hasClass('disabled') ) {
 				    
 	    // Toggle visibility of all tasks with class 'next' but not 'done', 'late', and 'free'.
-	    $('.task.next').not('.done').not('.late').not('.free').toggle(100);
+	    $('.task.next').not('.goal').not('.done').not('.late').not('.free').toggle(100);
 	    
 	    // Toggle 'on' class on the filter itself.
 	    $(".filter#next").toggleClass('on');
@@ -616,7 +670,7 @@ var setFilterHandles = function() {
 	if ( !$(this).hasClass('disabled') ) {
 				    
 	    // Toggle visibility of all tasks with class 'now' but not 'done', 'late', 'free', and 'next'.
-	    $('.task.now').not('next').not('.done').not('.late').not('.free').toggle(100);
+	    $('.task.now').not('next').not('.goal').not('.done').not('.late').not('.free').toggle(100);
 	    
 	    // Toggle 'on' class on the filter itself.
 	    $(".filter#now").toggleClass('on');
