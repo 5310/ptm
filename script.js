@@ -220,6 +220,9 @@ var sortTasklist = function() {
     tasklist = tasklist.concat(tasklist_goaled);
     tasklist = tasklist.concat(tasklist_ungoaled);
     
+    // Reverse tasklist since that makes more sense.
+    tasklist = tasklist.reverse();
+    
 };
 
 // Sets the tasklist from the GET reponse.
