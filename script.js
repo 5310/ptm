@@ -246,7 +246,7 @@ var parseTasks = function() {
                 var time = "";
                 
                 // Parse date.
-                if ( task.hasClass('late') || task.hasClass('free') ) {       	
+                if ( (task.hasClass('late') || task.hasClass('free')) && !task.hasClass('goal') ) {       	
                     var now = new Date();
                     var today = new Date(
                         now.getFullYear(), 
@@ -450,50 +450,59 @@ var updateFiltersTooltips = function() {
 
 // Sets filters to the state in `filters`.
 var setFiltersByState = function() {
+	
+	// For the 'goal' filter.
+	if ( filters['goal'] ) {
+		$(".filter#goal").addClass('on');
+		$('.task.goal').show();
+	} else {
+		$(".filter#goal").removeClass('on');
+		$('.task.goal').hide();
+	}
 		
 	// For the 'done' filter.
 	if ( filters['done'] ) {
 		$(".filter#done").addClass('on');
-		$('.task.done').show();
+		$('.task.done').not('.goal').show();
 	} else {
 		$(".filter#done").removeClass('on');
-		$('.task.done').hide();
+		$('.task.done').not('.goal').hide();
 	}
 	
 	// For the 'late' filter.	
 	if ( filters['late'] ) {
 		$(".filter#late").addClass('on');
-		$('.task.late').not('.done').show();
+		$('.task.late').not('.goal').not('.done').show();
 	} else {
 		$(".filter#late").removeClass('on');
-		$('.task.late').not('.done').hide();
+		$('.task.late').not('.goal').not('.done').hide();
 	}
 	
 	// For the 'free' filter.	
 	if ( filters['free'] ) {
 		$(".filter#free").addClass('on');
-		$('.task.free').not('.done').not('.late').show();
+		$('.task.free').not('.goal').not('.done').not('.late').show();
 	} else {
 		$(".filter#free").removeClass('on');
-		$('.task.free').not('.done').not('.late').hide();
+		$('.task.free').not('.goal').not('.done').not('.late').hide();
 	}
 	
 	// For the 'next' filter.	
 	if ( filters['next'] ) {
 		$(".filter#next").addClass('on');
-		$('.task.next').not('.done').not('.late').not('.free').show(100);
+		$('.task.next').not('.goal').not('.done').not('.late').not('.free').show(100);
 	} else {
 		$(".filter#next").removeClass('on');
-		$('.task.next').not('.done').not('.late').not('.free').hide(100);
+		$('.task.next').not('.goal').not('.done').not('.late').not('.free').hide(100);
 	}
 	
 	// For the 'now' filter.
 	if ( filters['now'] ) {
 		$(".filter#now").addClass('on');
-		$('.task.now').not('.done').not('.late').not('.free').not('next').show(100);
+		$('.task.now').not('.goal').not('.done').not('.late').not('.free').not('next').show(100);
 	} else {
 		$(".filter#now").removeClass('on');
-		$('.task.now').not('.done').not('.late').not('.free').not('next').hide(100);
+		$('.task.now').not('.goal').not('.done').not('.late').not('.free').not('next').hide(100);
 	}
 	
 	// For the empty-message.
