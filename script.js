@@ -122,7 +122,7 @@ var sync = function() {
     
     // Get tasklist.
     // The GET url. Callback defined and signed.
-    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28dueBefore%3Atoday+AND+status%3Aincomplete%29+OR+due%3Atoday&api_sig=fd7a75d5e228476720adbcaa4f0e6abc&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=callback";
+    var url = "http://api.rememberthemilk.com/services/rest/?format=json&auth_token=cf81318dee8e7d86f8130a172e358bbfbffae88c&filter=%28tag%3Agoal+AND+status%3Aincomplete%29+OR+%28dueBefore%3Atoday+AND+status%3Aincomplete%29+OR+due%3Atoday&api_sig=ff4c188806c869c6b0c5eb9f07cb491a&api_key=87cc9a20857bd07e0f00438ea6dedc4e&method=rtm.tasks.getList&callback=callback";
     $.ajax({									
       url: url,
       dataType: "script",
