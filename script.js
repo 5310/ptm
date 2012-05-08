@@ -195,21 +195,28 @@ var sortTasklist = function() {
     //Sort goal-tasks separately and then merge.
     var tasklist_goaled = [];
     var tasklist_ungoaled = [];
-    for ( i in tasklist )
+    for ( i in tasklist ) {
 	if ( tasklist[i]['tags']['tag'] !== undefined ) {
-	    if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) )
+	    if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) ) {
+		var goaled = false;
 		for ( j in tasklist[i]['tags']['tag'] )
 		    if ( tasklist[i]['tags']['tag'][j] == "goal" )
-			tasklist_goaled.push(tasklist[i]);
-		    else
-			tasklist_ungoaled.push(tasklist[i]);
-	    else
+			goaled = true;
+		if ( goaled )
+		    tasklist_goaled.push(tasklist[i]);
+		else
+		    tasklist_ungoaled.push(tasklist[i]);
+	    } else {
 		if ( tasklist[i]['tags']['tag'] == "goal" )
 		    tasklist_goaled.push(tasklist[i]);
 		else
 		    tasklist_ungoaled.push(tasklist[i]);
+	    }
 	}
-    tasklist = tasklist_goaled.concat(tasklist_ungoaled);
+    }
+    tasklist = [];
+    tasklist = tasklist.concat(tasklist_goaled);
+    tasklist = tasklist.concat(tasklist_ungoaled);
     
 };
 
@@ -265,7 +272,7 @@ var parseTasks = function() {
                 var time = "";
                 
                 // Parse date.
-                if ( (task.hasClass('late') || task.hasClass('free')) && !task.hasClass('goal') ) {       	
+                if ( task.hasClass('late') || task.hasClass('free') ) {       	
                     var now = new Date();
                     var today = new Date(
                         now.getFullYear(), 
@@ -286,7 +293,8 @@ var parseTasks = function() {
                     time = zeropad(due.getHours(), 2)+":"+zeropad(due.getMinutes(), 2);
                 
                 // Set time.
-                $(this).text(date+" "+time);
+		if ( !task.hasClass('goal') )
+		    $(this).text(date+" "+time);
                 
             }
         ));
