@@ -192,6 +192,25 @@ var sortTasklist = function() {
 	return a_sort - b_sort;
     });
     
+    //Sort goal-tasks separately and then merge.
+    var tasklist_goaled = [];
+    var tasklist_ungoaled = [];
+    for ( i in tasklist )
+	if ( tasklist[i]['tags']['tag'] !== undefined ) {
+	    if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) )
+		for ( j in tasklist[i]['tags']['tag'] )
+		    if ( tasklist[i]['tags']['tag'][j] == "goal" )
+			tasklist_goaled.push(tasklist[i]);
+		    else
+			tasklist_ungoaled.push(tasklist[i]);
+	    else
+		if ( tasklist[i]['tags']['tag'] == "goal" )
+		    tasklist_goaled.push(tasklist[i]);
+		else
+		    tasklist_ungoaled.push(tasklist[i]);
+	}
+    tasklist = tasklist_goaled.concat(tasklist_ungoaled);
+    
 };
 
 // Sets the tasklist from the GET reponse.
