@@ -173,7 +173,7 @@ var sortTasklist = function() {
 	else
 	    return -1;
     });
-    
+
     // Sort by due-date-time.
     tasklist = tasklist.sort(function(a, b){
 	var a_sort = Date.parse(a['task']['due']);
@@ -212,6 +212,8 @@ var sortTasklist = function() {
 		else
 		    tasklist_ungoaled.push(tasklist[i]);
 	    }
+	} else {
+	    tasklist_ungoaled.push(tasklist[i]);
 	}
     }
     tasklist = [];
