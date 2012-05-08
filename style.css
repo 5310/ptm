@@ -35,7 +35,7 @@ body {
 }
 
 #control :hover:not(.disabled) {
-    text-shadow: #babbb8 0px 0px 2px;
+    text-shadow: #e0e1df 0px 0px 2px;
     cursor: pointer;
 }
 
