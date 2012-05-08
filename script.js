@@ -775,6 +775,8 @@ var showEmptyMessage = function() {
 	// See how many tasks are visible.
 	var visible = 0;
 	var selector = ".task";
+	if ( !filters['goal'] )
+		selector += ":not(.goal)";
 	if ( !filters['done'] )
 		selector += ":not(.done)";
 	if ( !filters['late'] )
