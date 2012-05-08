@@ -13,7 +13,7 @@ var filters = {
 	'done': false,
 	'late': true,
 	'free': true,
-	'next': true,
+	'next': false,
 	'now':	true
 };
 
