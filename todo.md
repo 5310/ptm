@@ -43,9 +43,9 @@ Ironic isn't it? I'm keeping a textual todo for a frontend to RTM?
 	12.	~~Rewrite filter to also get tasks done _today_.~~
 	13. ~~Parse url strings to a proper url before affixing.~~
 	14.	~~Make only the task label complete it.~~
+	15.	~~Fix bug where goal tagged tasks with only a single tag show up on the 'now' filter.~~
     
 6.	~~v1 - Personal release.~~
-	1.	Fix bug where goal tagged tasks with only a single tag show up on the 'now' filter.
     
 7.  Use user-provided API keys.
 	1.  Write GUI way to input API keys from other users. Provide simple instructions, and a warning.

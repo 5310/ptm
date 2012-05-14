@@ -372,13 +372,13 @@ var tagTaskByIndex = function(i, task) {
 	
     // See if task is a goal.
     if ( tasklist[i]['tags']['tag'] !== undefined ) {
-	if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) )
-	    for ( j in tasklist[i]['tags']['tag'] )
-		if ( tasklist[i]['tags']['tag'][j] == "goal" )
-		    task.addClass('goal');
+	if ( tasklist[i]['tags']['tag'] == "goal" )
+	    task.addClass('goal');
 	else
-	    if ( tasklist[i]['tags']['tag'] == "goal" )
-		    task.addClass('goal');
+	    if ( typeof(tasklist[i]['tags']['tag']) == typeof([]) )
+		for ( j in tasklist[i]['tags']['tag'] )
+		    if ( tasklist[i]['tags']['tag'][j] == "goal" )
+			task.addClass('goal');
     }
     
     // See if task is already complete.
